@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 
@@ -64,5 +65,4 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    
 }

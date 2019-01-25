@@ -15,7 +15,6 @@ public class House : ScriptableObject {
             return floorPrefabs.Length;
         }
     }
-    
 
 
     public GameObject CreateFloor(Vector3 pos, int floorIndex)

@@ -25,9 +25,10 @@ public class Player : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 		startPos = transform.position;
 		startRot = transform.rotation;
-		body.GetComponent<MeshRenderer>().material.color = playerData.color;
-		spawn.GetComponent<MeshRenderer>().material.color = playerData.color;
-		DesactivePlayer();
+		ActivePlayer(playerData.ID);
+
+		if (!IsActive())
+			gameObject.SetActive(false);
 	}
 
 	private void Update()
@@ -64,14 +65,17 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void ActivePlayer(int id)
+	public void ActivePlayer(int id, bool enablePlayerScript = true)
 	{
 		playerData.ID = id;
+
+		body.GetComponent<MeshRenderer>().material.color = playerData.color;
+		spawn.GetComponent<MeshRenderer>().material.color = playerData.color;
 
 		body.SetActive(true);
 		spawn.SetActive(false);
 
-		enabled = true;
+		enabled = enablePlayerScript;
 	}
 
 	public void DesactivePlayer()
@@ -79,8 +83,8 @@ public class Player : MonoBehaviour
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
 
-		transform.position = startPos;
-		transform.rotation = startRot;
+		//transform.position = startPos;
+		//transform.rotation = startRot;
 
 
 		spawn.SetActive(true);
@@ -111,15 +115,15 @@ public class Player : MonoBehaviour
 
 		//transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-		if(catchBlock)
+		if (catchBlock)
 		{
-			catchBlock.transform.position = new Vector3(transform.position.x, 4f ,transform.position.z);
-		}		
+			catchBlock.transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
+		}
 	}
 
 	private void CatchBlock()
 	{
-		if(catchBlock)
+		if (catchBlock)
 		{
 			return;
 		}
