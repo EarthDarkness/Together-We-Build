@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UniversalNetworkInput;
-using TMPro;
+using NaughtyAttributes;
 
 public class InputPuzzle : MonoBehaviour
 {
-
-    public TextMeshProUGUI text;
-
     public enum PuzzleType
     {
         Press,
@@ -17,60 +14,66 @@ public class InputPuzzle : MonoBehaviour
         Combination
     }
 
-    private ButtonCode[] randButton = { ButtonCode.A, ButtonCode.B, ButtonCode.X, ButtonCode.Y };
-
-    private ButtonCode[] combButtons = { ButtonCode.A, ButtonCode.LeftBumper, ButtonCode.RightBumper };
-
-    private ButtonCode[] wrongButtons;
-
-    ButtonCode lastPressed;
-
     public PuzzleType puzzleType;
 
+    [ShowIf("ShowPress"), ReorderableList]
+    public ButtonCode[] randButton = { ButtonCode.A, ButtonCode.B, ButtonCode.X, ButtonCode.Y };
+
+    [ShowIf("ShowCombination"), ReorderableList]
+    public ButtonCode[] combButtons = { ButtonCode.A, ButtonCode.LeftBumper, ButtonCode.RightBumper };
+
+    [ShowIf("ShowAlternate"), ReorderableList,OnValueChanged("AlternateMaxTwo")]
+    public ButtonCode[] altButton = { ButtonCode.A, ButtonCode.B };
+
+    private List<ButtonCode> wrongButtons = new List<ButtonCode>();
+
     int buttonSelected;
-
-    public float resetTime = 0.5f;
-
-    float resetTimer = 0.0f;
-
-    int combCount = 0;
-
+    [HideIf("ShowCombination"), ReadOnly]
     float percentage = 0;
+    [HideIf("ShowCombination")]
+    public float percentageIncrease = 10.0f;
+    [HideIf("ShowCombination")]
+    public float percentageDecrease = 20.0f;
 
-    float percentageIncrease = 10.0f;
+    ButtonCode nextPress;
 
-    float percentageDecrease = 20.0f;
+    [ShowIf("ShowCombination")]
+    public float resetTime = 0.5f;
+    float resetTimer = 0.0f;
+    int combCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         buttonSelected = UnityEngine.Random.Range(0, randButton.Length);
-        text.text = "<sprite name=\"" + randButton[buttonSelected].ToString() + "\">";
+
         int enumSize = Enum.GetNames(typeof(ButtonCode)).Length;
-        wrongButtons = new ButtonCode[enumSize - combButtons.Length];
+        string[] values = Enum.GetNames(typeof(ButtonCode));
+        nextPress = altButton[0];
+
         for (int i = 0; i < enumSize; i++)
         {
+            ButtonCode code = (ButtonCode)Enum.Parse(typeof(ButtonCode), values[i]);
+            bool wrong = true;
             for (int j = 0; j < combButtons.Length; j++)
             {
-                bool wrong = false;
-                if (i == (int)combButtons[j])
+                if (code == combButtons[j])
                 {
+                    wrong = false;
                     continue;
                 }
-                wrongButtons[i] = (ButtonCode)i;
+            }
+            if (wrong)
+            {
+                wrongButtons.Add(code);
             }
         }
-        foreach (ButtonCode button in wrongButtons)
-        {
-            Debug.Log(button);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         switch (puzzleType)
         {
             case PuzzleType.Press:
@@ -83,32 +86,38 @@ public class InputPuzzle : MonoBehaviour
                 Debug.Log(percentage);
                 break;
             case PuzzleType.Alternate:
-
+                if (UNInput.GetButtonDown(nextPress))
+                {
+                    nextPress = nextPress != altButton[0] ? altButton[0] : altButton[1];
+                    percentage += percentageIncrease;
+                }
+                percentage -= Mathf.Clamp(percentageDecrease * Time.deltaTime, 0, 100f);
+                Debug.Log(percentage);
                 break;
             case PuzzleType.Combination:
                 if (resetTimer >= resetTime)
                 {
-                    Debug.Log("Time");
                     ResetCombination();
                 }
 
                 if (UNInput.GetButtonDown(combButtons[combCount]))
                 {
-                    Debug.Log("Right");
                     combCount++;
                     if (combCount == combButtons.Length)
                     {
                         //Finished Combination.
-                        text.text = "Finished";
                         combCount = 0;
                     }
                 }
-
-                else
+                for (int i = 0; i < wrongButtons.Count; i++)
                 {
-                    ResetCombination();
-                    Debug.Log("Bad");
+                    if (UNInput.GetButtonDown(wrongButtons[i]))
+                    {
+                        ResetCombination();
+                        resetTimer = 0.0f;
+                    }
                 }
+
                 resetTimer += Time.deltaTime;
                 break;
         }
@@ -119,6 +128,29 @@ public class InputPuzzle : MonoBehaviour
     {
         resetTimer = 0.0f;
         combCount = 0;
+    }
+
+    private void AlternateMaxTwo()
+    {
+        ButtonCode button1 = altButton[0], button2 = altButton[1];
+        altButton = new ButtonCode[2];
+        altButton.SetValue(button1, 0);
+        altButton.SetValue(button2, 1);
+    }
+
+    private bool ShowPress()
+    {
+        return puzzleType == PuzzleType.Press ? true : false;
+    }
+
+    private bool ShowAlternate()
+    {
+        return puzzleType == PuzzleType.Alternate ? true : false;
+    }
+
+    private bool ShowCombination()
+    {
+        return puzzleType == PuzzleType.Combination ? true : false;
     }
 
 }
