@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [Required]
-    public BlockManager blockManager;
-    public List<Block> puzzle = new List<Block>();
-
+	[Required]
+	public BlockManager blockManager;
+	public List<Block> puzzle = new List<Block>();
+	public List<Player> players = new List<Player>();
     public House house;
 
     public int puzzleNumber = 3;

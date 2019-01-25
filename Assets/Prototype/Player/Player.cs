@@ -8,9 +8,16 @@ public class Player : MonoBehaviour
 	[BoxGroup("PlayerData"), Required]
 	public PlayerData playerData;
 
-	[BoxGroup("References")]
+	[BoxGroup("Model")]
+	public GameObject[] models;
+
+	[BoxGroup("Model")]
+	public GameObject skinColors;
+
+	[BoxGroup("PROTOTYPE")]
 	public GameObject body, spawn;
 
+	[BoxGroup("Block System")]
 	public Block interactBlock, catchBlock;
 
 	private Vector3 moveDirection = Vector3.zero;
@@ -27,8 +34,14 @@ public class Player : MonoBehaviour
 		startRot = transform.rotation;
 		ActivePlayer(playerData.ID);
 
-		if (!IsActive())
+		if (IsActive())
+		{
+			GameManager.Instance.players.Add(this);
+		}
+		else
+		{
 			gameObject.SetActive(false);
+		}
 	}
 
 	private void Update()
@@ -82,7 +95,6 @@ public class Player : MonoBehaviour
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
-
 		//transform.position = startPos;
 		//transform.rotation = startRot;
 
