@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniversalNetworkInput;
@@ -43,9 +44,26 @@ public class InputPuzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonSelected = Random.Range(0, randButton.Length);
+        buttonSelected = UnityEngine.Random.Range(0, randButton.Length);
         text.text = "<sprite name=\"" + randButton[buttonSelected].ToString() + "\">";
-
+        int enumSize = Enum.GetNames(typeof(ButtonCode)).Length;
+        wrongButtons = new ButtonCode[enumSize - combButtons.Length];
+        for (int i = 0; i < enumSize; i++)
+        {
+            for (int j = 0; j < combButtons.Length; j++)
+            {
+                bool wrong = false;
+                if (i == (int)combButtons[j])
+                {
+                    continue;
+                }
+                wrongButtons[i] = (ButtonCode)i;
+            }
+        }
+        foreach (ButtonCode button in wrongButtons)
+        {
+            Debug.Log(button);
+        }
     }
 
     // Update is called once per frame

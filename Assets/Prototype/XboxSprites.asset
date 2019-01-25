@@ -3,17 +3,16 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: XboxSprites
+  m_Script: {fileID: 2019389346, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: buttonsSprite
   m_EditorClassIdentifier: 
   hashCode: -26759156
-  material: {fileID: 21709355952141812}
+  material: {fileID: 21346139616820606}
   materialHashCode: 0
   spriteSheet: {fileID: 2800000, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
   spriteInfoList:
@@ -22,12 +21,12 @@ MonoBehaviour:
     y: 704
     width: 237
     height: 228
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
+    xOffset: -118.5
+    yOffset: 114
+    xAdvance: 237
     scale: 1
-    name: LeftStick
-    hashCode: 1825858173
+    name: buttonsSprite_0
+    hashCode: 924052483
     unicode: 0
     pivot: {x: -118.5, y: 114}
     sprite: {fileID: 21300000, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
@@ -36,12 +35,12 @@ MonoBehaviour:
     y: 702
     width: 227
     height: 230
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
     scale: 1
-    name: RightStick
-    hashCode: 979700486
+    name: buttonsSprite_11
+    hashCode: 428960883
     unicode: 0
     pivot: {x: -113.5, y: 115}
     sprite: {fileID: 21300022, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
@@ -50,12 +49,12 @@ MonoBehaviour:
     y: 702
     width: 227
     height: 230
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
     scale: 1
-    name: DPadLeft
-    hashCode: 998139722
+    name: buttonsSprite_1
+    hashCode: 924052482
     unicode: 0
     pivot: {x: -113.5, y: 115}
     sprite: {fileID: 21300002, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
@@ -64,193 +63,192 @@ MonoBehaviour:
     y: 702
     width: 227
     height: 230
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
     scale: 1
-    name: DPadRight
-    hashCode: -1446930959
+    name: buttonsSprite_2
+    hashCode: 924052481
     unicode: 0
     pivot: {x: -113.5, y: 115}
     sprite: {fileID: 21300004, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
   - id: 4
-    x: 457
-    y: 473
-    width: 227
-    height: 230
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
-    scale: 1
-    name: DPadUp
-    hashCode: -1687097036
-    unicode: 0
-    pivot: {x: -113.5, y: 115}
-    sprite: {fileID: 21300026, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 5
-    x: 230
-    y: 472
-    width: 227
-    height: 230
-    xOffset: 5
-    yOffset: 185
-    xAdvance: 230
-    scale: 1
-    name: DPadDown
-    hashCode: 997858211
-    unicode: 0
-    pivot: {x: -113.5, y: 115}
-    sprite: {fileID: 21300024, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 6
-    x: 684
-    y: 472
-    width: 227
-    height: 230
-    xOffset: 5
-    yOffset: 180
-    xAdvance: 230
-    scale: 1
-    name: A
-    hashCode: 65
-    unicode: 0
-    pivot: {x: -113.5, y: 115}
-    sprite: {fileID: 21300028, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 7
-    x: 230
-    y: 260
-    width: 212
-    height: 212
-    xOffset: 5
-    yOffset: 180
-    xAdvance: 230
-    scale: 1
-    name: X
-    hashCode: 88
-    unicode: 0
-    pivot: {x: -106, y: 106}
-    sprite: {fileID: 21300008, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 8
-    x: 0
-    y: 227
-    width: 212
-    height: 212
-    xOffset: 5
-    yOffset: 180
-    xAdvance: 230
-    scale: 1
-    name: B
-    hashCode: 66
-    unicode: 0
-    pivot: {x: -106, y: 106}
-    sprite: {fileID: 21300014, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 9
-    x: 0
-    y: 14
-    width: 212
-    height: 212
-    xOffset: 5
-    yOffset: 180
-    xAdvance: 230
-    scale: 1
-    name: Y
-    hashCode: 89
-    unicode: 0
-    pivot: {x: -106, y: 106}
-    sprite: {fileID: 21300020, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 10
     x: 0
     y: 571
     width: 229
     height: 130
-    xOffset: 5
-    yOffset: 120
-    xAdvance: 230
-    scale: 0.8
-    name: LeftBumper
-    hashCode: 676143430
+    xOffset: -114.5
+    yOffset: 65
+    xAdvance: 229
+    scale: 1
+    name: buttonsSprite_15
+    hashCode: 428960887
     unicode: 0
     pivot: {x: -114.5, y: 65}
     sprite: {fileID: 21300030, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 11
+  - id: 5
+    x: 457
+    y: 473
+    width: 227
+    height: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
+    scale: 1
+    name: buttonsSprite_13
+    hashCode: 428960881
+    unicode: 0
+    pivot: {x: -113.5, y: 115}
+    sprite: {fileID: 21300026, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 6
+    x: 230
+    y: 472
+    width: 227
+    height: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
+    scale: 1
+    name: buttonsSprite_12
+    hashCode: 428960880
+    unicode: 0
+    pivot: {x: -113.5, y: 115}
+    sprite: {fileID: 21300024, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 7
+    x: 684
+    y: 472
+    width: 227
+    height: 230
+    xOffset: -113.5
+    yOffset: 115
+    xAdvance: 227
+    scale: 1
+    name: buttonsSprite_14
+    hashCode: 428960886
+    unicode: 0
+    pivot: {x: -113.5, y: 115}
+    sprite: {fileID: 21300028, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 8
     x: 0
     y: 440
     width: 229
     height: 130
-    xOffset: 5
-    yOffset: 120
-    xAdvance: 230
-    scale: 0.8
-    name: LeftBumper
-    hashCode: 676143430
+    xOffset: -114.5
+    yOffset: 65
+    xAdvance: 229
+    scale: 1
+    name: buttonsSprite_3
+    hashCode: 924052480
     unicode: 0
     pivot: {x: -114.5, y: 65}
     sprite: {fileID: 21300006, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 12
-    x: 443
-    y: 108
-    width: 161
-    height: 221
-    xOffset: 20
-    yOffset: 180
-    xAdvance: 200
-    scale: 1
-    name: LeftTrigger
-    hashCode: 1228204739
-    unicode: 0
-    pivot: {x: -80.5, y: 110.5}
-    sprite: {fileID: 21300018, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 13
-    x: 627
-    y: 252
-    width: 161
-    height: 218
-    xOffset: 20
-    yOffset: 180
-    xAdvance: 200
-    scale: 1
-    name: RightTrigger
-    hashCode: 303142072
-    unicode: 0
-    pivot: {x: -80.5, y: 109}
-    sprite: {fileID: 21300012, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 14
+  - id: 9
     x: 443
     y: 330
     width: 183
     height: 140
-    xOffset: 5
-    yOffset: 115
-    xAdvance: 200
+    xOffset: -91.5
+    yOffset: 70
+    xAdvance: 183
     scale: 1
-    name: Start
-    hashCode: 99187456
+    name: buttonsSprite_5
+    hashCode: 924052486
     unicode: 0
     pivot: {x: -91.5, y: 70}
     sprite: {fileID: 21300010, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
-  - id: 15
+  - id: 10
+    x: 230
+    y: 260
+    width: 212
+    height: 212
+    xOffset: -106
+    yOffset: 106
+    xAdvance: 212
+    scale: 1
+    name: buttonsSprite_4
+    hashCode: 924052487
+    unicode: 0
+    pivot: {x: -106, y: 106}
+    sprite: {fileID: 21300008, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 11
+    x: 627
+    y: 252
+    width: 161
+    height: 218
+    xOffset: -80.5
+    yOffset: 109
+    xAdvance: 161
+    scale: 1
+    name: buttonsSprite_6
+    hashCode: 924052485
+    unicode: 0
+    pivot: {x: -80.5, y: 109}
+    sprite: {fileID: 21300012, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 12
+    x: 0
+    y: 227
+    width: 212
+    height: 212
+    xOffset: -106
+    yOffset: 106
+    xAdvance: 212
+    scale: 1
+    name: buttonsSprite_7
+    hashCode: 924052484
+    unicode: 0
+    pivot: {x: -106, y: 106}
+    sprite: {fileID: 21300014, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 13
     x: 213
     y: 119
     width: 183
     height: 140
-    xOffset: 5
-    yOffset: 115
-    xAdvance: 230
+    xOffset: -91.5
+    yOffset: 70
+    xAdvance: 183
     scale: 1
-    name: Back
-    hashCode: 2476363
+    name: buttonsSprite_8
+    hashCode: 924052491
     unicode: 0
     pivot: {x: -91.5, y: 70}
     sprite: {fileID: 21300016, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 14
+    x: 443
+    y: 108
+    width: 161
+    height: 221
+    xOffset: -80.5
+    yOffset: 110.5
+    xAdvance: 161
+    scale: 1
+    name: buttonsSprite_9
+    hashCode: 924052490
+    unicode: 0
+    pivot: {x: -80.5, y: 110.5}
+    sprite: {fileID: 21300018, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 15
+    x: 0
+    y: 14
+    width: 212
+    height: 212
+    xOffset: -106
+    yOffset: 106
+    xAdvance: 212
+    scale: 1
+    name: buttonsSprite_10
+    hashCode: 428960882
+    unicode: 0
+    pivot: {x: -106, y: 106}
+    sprite: {fileID: 21300020, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
   fallbackSpriteAssets: []
---- !u!21 &21709355952141812
+--- !u!21 &21346139616820606
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: TextMeshPro/Sprite
-  m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3a1c68c8292caf046bd21158886c5e40, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
