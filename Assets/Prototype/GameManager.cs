@@ -8,20 +8,22 @@ public class GameManager : MonoBehaviour
 	public BlockManager blockManager;
 	public List<Block> puzzle = new List<Block>();
 
-	public void Update()
+    public int puzzleNumber = 3;
+
+    private int houseFloors = 0;
+
+    private void Start()
+    {
+        for (int i = 0; i < puzzleNumber; i++)
+        {
+            puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+                    blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+        }
+    }
+
+    private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			if (puzzle.Count == 0)
-			{
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.right * 3f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-			}
-		}
+
 	}
 
 	public void OnTriggerEnter(Collider other)
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
 					break;
 				}
 			}
+
+            if (puzzle.Count <= 0)
+            {
+                
+            }
 		}
 	}
 
@@ -56,4 +63,6 @@ public class GameManager : MonoBehaviour
 			//Player p = other.GetComponentInParent<Player>();
 		}
 	}
+
+    
 }
