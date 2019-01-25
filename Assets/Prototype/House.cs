@@ -1,11 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class House : ScriptableObject {
+public class House : ScriptableObject
+{
 
     public float[] floorHeights;
     public GameObject[] floorPrefabs;
+    public GameObject[] floorRoofs;
+
+    float timer = 0;
 
     public int MaxHouseFloor
     {
@@ -21,4 +24,14 @@ public class House : ScriptableObject {
     {
         return Instantiate(floorPrefabs[floorIndex], pos, Quaternion.identity);
     }
+
+    //IEnumerator GenerateRoof(int roofIndex)
+    //{
+    //    timer += Time.deltaTime;
+    //    //Animation time
+    //    if (timer >= 1f)
+    //    {
+    //        Instantiate(floorRoofs[])
+    //    }
+    //}
 }

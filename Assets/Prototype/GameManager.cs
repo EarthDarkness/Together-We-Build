@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 	[Required]
 	public BlockManager blockManager;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             if (puzzle.Count <= 0)
             {
                 
+
             }
 		}
 	}
