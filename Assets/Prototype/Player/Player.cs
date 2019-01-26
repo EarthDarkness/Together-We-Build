@@ -8,9 +8,16 @@ public class Player : MonoBehaviour
 	[BoxGroup("PlayerData"), Required]
 	public PlayerData playerData;
 
-	[BoxGroup("References")]
+	[BoxGroup("Model")]
+	public GameObject[] models;
+
+	[BoxGroup("Model")]
+	public GameObject skinColors;
+
+	[BoxGroup("PROTOTYPE")]
 	public GameObject body, spawn;
 
+	[BoxGroup("Block System")]
 	public Block interactBlock, catchBlock;
 
 	private Vector3 moveDirection = Vector3.zero;

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerChecker : MonoBehaviour
 {
+	public MenuController menuController;
+
 	public Player[] players;
 
 	public bool blockCheck = false;
@@ -18,6 +20,11 @@ public class PlayerChecker : MonoBehaviour
 		{
 			player.DesactivePlayer();
 		}
+	}
+
+	private void OnDisable()
+	{
+		Start();
 	}
 
 	private void Update()
@@ -38,7 +45,19 @@ public class PlayerChecker : MonoBehaviour
 			}
 
 			blockCheck = false;
-
+			if (UNInput.GetButtonDown(id, ButtonCode.B))
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					if (players[i].IsActive())
+					{
+						continue;
+					}
+					menuController.ChooseToMenu();
+					blockCheck = true;
+					break;
+				}
+			}
 			if (UNInput.GetButtonDown(id, ButtonCode.A))
 			{
 				for (int i = 0; i < 4; i++)

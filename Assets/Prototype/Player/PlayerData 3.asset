@@ -14,7 +14,7 @@ MonoBehaviour:
   ID: -1
   modelID: -1
   playerColor: {r: 0, g: 0.45588237, b: 0.040872093, a: 1}
-  skinColor: {r: 0, g: 0, b: 0, a: 1}
+  skinColor: {r: 1, g: 1, b: 1, a: 1}
   speed: 6
   jumpSpeed: 8
   gravity: 20
