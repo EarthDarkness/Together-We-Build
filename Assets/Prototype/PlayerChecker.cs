@@ -1,34 +1,44 @@
 ﻿using UnityEngine;
 using UniversalNetworkInput;
 
+using System.Collections.Generic;
+
 public class PlayerChecker : MonoBehaviour
 {
 	public Player[] player;
 
+	public bool test = false;
+
+	public static List<int> playersActivated = new List<int>();
+
 	private void Update()
 	{
-		for (int i = 0; i < 4; i++)
+
+		for (int id = 0; id < 4; id++)
 		{
-			if (UNInput.GetButtonDown(i, ButtonCode.A))
+			if (playersActivated.Contains(id))
 			{
-				Debug.Log(i);
-				break;
+				continue;
 			}
 
-			//if (!UNInput.GetButtonDown(i, ButtonCode.A))
-			//{
-			//	return;
-			//}
+			test = false;
 
-			//for (int p = 0; p < player.Length; p++)
-			//{
-			//	if (player[p].IsActive())
-			//	{
-			//		return;
-			//	}
-			//	player[p].ActivePlayer(i);
-			//	break;
-			//}
+			if (UNInput.GetButtonDown(id, ButtonCode.A))
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					if (player[i].IsActive())
+					{
+						continue;
+					}
+					player[i].ActivePlayer(id);
+					playersActivated.Add(id);
+					test = true;
+					break;
+				}
+			}
+			if (test)
+				break;
 		}
 	}
 }

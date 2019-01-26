@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
 
 	public void DesactivePlayer()
 	{
+		PlayerChecker.playersActivated.Remove(ID);
 		ID = -1;
 
 		transform.position = startPos;
