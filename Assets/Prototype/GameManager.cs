@@ -13,6 +13,9 @@ public class GameManager : Singleton<GameManager>
     //[Required]
     //public GameObject pressInterface, alternateInterface, combinationInterface;
 
+	[Required]
+	public FloatVariable PuzzleTimer;
+
     [Required]
     public GameObject playerPanel;
 
@@ -27,6 +30,8 @@ public class GameManager : Singleton<GameManager>
 
     private int houseFloor = 0;
     private float failedTimer = 0.0f;
+
+	public float remainingTime = 0.0f;//0 == lose
 
     List<InputPuzzle> playerPuzzles = new List<InputPuzzle>();
 
@@ -63,11 +68,12 @@ public class GameManager : Singleton<GameManager>
 
             if (puzzleBlocks.Count <= 0)
             {
+				playerPuzzles[0].transform.parent.parent.GetChild(0).gameObject.SetActive(true);
                 Debug.Log("Test");
                 for (int i = 0; i < players.Count; i++)
                 {
                     int randType = Random.Range(0, 3);
-                    playerPuzzles[i].CreatePuzzle((InputPuzzle.PuzzleType)2, 4);
+                    playerPuzzles[i].CreatePuzzle((InputPuzzle.PuzzleType)randType, 4);
                     playerPuzzles[i].transform.GetChild(randType).gameObject.SetActive(true);
                     playerPuzzles[i].transform.GetChild(randType).GetComponentInChildren<ButtonCodeWriter>().SetText();
 
@@ -124,6 +130,7 @@ public class GameManager : Singleton<GameManager>
             }
 
             failedTimer += Time.deltaTime;
+			PuzzleTimer.value = (failedPuzzleTime-failedTimer)/failedPuzzleTime;
 
             yield return null;
         }
