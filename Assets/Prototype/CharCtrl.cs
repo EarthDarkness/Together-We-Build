@@ -12,12 +12,14 @@ public class CharCtrl : MonoBehaviour
 	private GameObject childMale;
 	private GameObject childFemale;
 	private GameObject childNeutral;
+	private Transform childHand;
 
 	private GameObject adult;
 	private GameObject adultBase;
 	private GameObject adultMale;
 	private GameObject adultFemale;
 	private GameObject adultNeutral;
+	private Transform adultHand;
 
 	Animator[] graph;
 
@@ -77,13 +79,24 @@ public class CharCtrl : MonoBehaviour
 
 	}
 
+	public Transform HandTransform(){
+		if(data.modelID < 0)
+			return null;
+
+		if(data.modelID <  3)
+			return adultHand;
+		if(data.modelID <  6)
+			return childHand;
+
+		return null;
+	}
+
 	public float Grab(){
 		foreach(Animator anim in graph){
 			anim.SetTrigger("Grab");
 		}
 		return grabDelay;
 	}
-
 	public float Throw(){
 		foreach(Animator anim in graph){
 			anim.SetTrigger("Throw");
@@ -103,12 +116,14 @@ public class CharCtrl : MonoBehaviour
 		adultMale = adult.transform.GetChild(3).gameObject;
 		adultFemale = adult.transform.GetChild(4).gameObject;
 		adultNeutral = adult.transform.GetChild(0).gameObject;
+		adultHand = adult.transform.GetChild(2).GetChild(0);
 
 		child = transform.GetChild(1).GetChild(0).gameObject;
 		childBase = child.transform.GetChild(0).gameObject;
 		childMale = child.transform.GetChild(2).gameObject;
 		childFemale = child.transform.GetChild(4).gameObject;
 		childNeutral = child.transform.GetChild(3).gameObject;
+		childHand = child.transform.GetChild(1).GetChild(0);
 	
 		graph = GetComponentsInChildren<Animator>();
 
