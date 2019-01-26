@@ -156,7 +156,17 @@ public class GameManager : Singleton<GameManager>
 
             if (failedTimer >= failedPuzzleTime)
             {
-                puzzleNumber++;
+                for (int i = 0; i < players.Count; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        playerPuzzles[0].transform.parent.parent.GetChild(0).gameObject.SetActive(false);
+                        playerPuzzles[players[i].playerData.playerID].transform.GetChild(j).gameObject.SetActive(false);
+                        playerPanel.transform.GetChild(players[i].playerData.playerID).gameObject.SetActive(false);
+                        players[i].Build(false);
+                    }
+                }
+
                 for (int i = 0; i < puzzleNumber; i++)
                 {
                     puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
