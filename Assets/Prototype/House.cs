@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[CreateAssetMenu(fileName ="HouseData",menuName ="House Data")]
 public class House : ScriptableObject
 {
-
-    public float[] floorHeights;
     public GameObject[] floorPrefabs;
     public GameObject[] floorRoofs;
 
@@ -26,22 +25,14 @@ public class House : ScriptableObject
 
     public void RemoveFloor(int floorIndex)
     {
+        //Change animation
         instantiatedFloors[floorIndex].GetComponent<Animator>().Play("DestroyAnim");
     }
 
-    public GameObject CreateFloor(Vector3 pos, int floorIndex)
+    public GameObject CreateFloor(int floorIndex)
     {
-        instantiatedFloors[floorIndex] = Instantiate(floorPrefabs[floorIndex], pos, Quaternion.identity);
+        instantiatedFloors[floorIndex] = Instantiate(floorPrefabs[floorIndex]);
         return instantiatedFloors[floorIndex];
     }
-
-    //IEnumerator GenerateRoof(int roofIndex)
-    //{
-    //    timer += Time.deltaTime;
-    //    //Animation time
-    //    if (timer >= 1f)
-    //    {
-    //        Instantiate(floorRoofs[])
-    //    }
-    //}
+    
 }

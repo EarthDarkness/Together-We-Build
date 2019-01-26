@@ -14,6 +14,8 @@ public class InputPuzzle : MonoBehaviour
         Combination = 2
     }
 
+    private int controllerID;
+
     public PuzzleType puzzleType;
 
     [ShowIf("ShowPress"), ReorderableList]
@@ -87,9 +89,11 @@ public class InputPuzzle : MonoBehaviour
     [ReadOnly]
     public bool isComplete = false;
 
-    public void CreatePuzzle(PuzzleType type, int combinationSize = 3, bool randCombination = true, bool randAlternative = true)
+    public void CreatePuzzle(PuzzleType type, int controllerID, int combinationSize = 3, bool randCombination = true, bool randAlternative = true )
     {
         puzzleType = type;
+
+        this.controllerID = controllerID;
 
         buttonSelected = UnityEngine.Random.Range(0, randButton.Length);
 
@@ -128,11 +132,12 @@ public class InputPuzzle : MonoBehaviour
             switch (puzzleType)
             {
                 case PuzzleType.Press:
-                    if (UNInput.GetButtonDown(transform.GetSiblingIndex(), randButton[buttonSelected]))
+                    if (UNInput.GetButtonDown(controllerID, randButton[buttonSelected]))
                     {
                         percentage += percentageIncrease;
                         if (percentage >= 100.0f)
                         {
+                            Debug.Log("Completed");
                             isComplete = true;
                         }
                     }
@@ -142,12 +147,13 @@ public class InputPuzzle : MonoBehaviour
                     progressValue.value = percentage / 100f;
                     break;
                 case PuzzleType.Alternate:
-                    if (UNInput.GetButtonDown(transform.GetSiblingIndex(), nextPress))
+                    if (UNInput.GetButtonDown(controllerID, nextPress))
                     {
                         nextPress = nextPress != altButton[0] ? altButton[0] : altButton[1];
                         percentage += percentageIncrease;
                         if (percentage >= 100.0f)
                         {
+                            Debug.Log("Completed");
                             isComplete = true;
                         }
                     }
@@ -162,7 +168,7 @@ public class InputPuzzle : MonoBehaviour
                     }
                     foreach (ButtonCode button in allButtons)
                     {
-                        if (!UNInput.GetButtonDown(transform.GetSiblingIndex(), button))
+                        if (!UNInput.GetButtonDown(controllerID, button))
                         {
                             continue;
                         }
@@ -170,7 +176,6 @@ public class InputPuzzle : MonoBehaviour
                         Debug.Log(button);
                         if(button != combButtons[combCount])
                         {
-                            Debug.Log("Wrong");
                             ResetCombination();
                             resetTimer = 0.0f;
                         }
@@ -180,6 +185,7 @@ public class InputPuzzle : MonoBehaviour
                         }
                         if(combCount >= combButtons.Length)
                         {
+                            Debug.Log("Completed");
                             isComplete = true;
                             break;
                         }

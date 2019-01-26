@@ -7,6 +7,8 @@ public class PlayerData : ScriptableObject
 {
 	[BoxGroup("Controller")]
 	public int ID = -1;
+    public int playerID = 0;
+
 
 	[BoxGroup("Model")]
 	public int modelID = -1;

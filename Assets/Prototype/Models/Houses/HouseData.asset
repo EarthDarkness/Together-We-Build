@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c37a9af17cb3514d9425e9277606d50, type: 3}
+  m_Name: HouseData
+  m_EditorClassIdentifier: 
+  floorPrefabs:
+  - {fileID: 1003797060487108, guid: 957afc5c6662f984a9126339e52114c9, type: 2}
+  - {fileID: 1839622513857758, guid: 81753b89ed0ac95468ba2321336fcef7, type: 2}
+  - {fileID: 1654970815636750, guid: 390fbd336efd24b4e88655bc81026cf0, type: 2}
+  floorRoofs:
+  - {fileID: 1513544726865932, guid: a8159f05250d2ff45afe2db3784e5675, type: 2}
+  - {fileID: 1444794954131398, guid: 74e77c7ebf93afd40a9504a34f981ea5, type: 2}
+  - {fileID: 1637007311413738, guid: 0f1220c559f0d054cb50aa213121b10f, type: 2}
