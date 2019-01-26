@@ -72,6 +72,7 @@ public class MenuController : MonoBehaviour
 	public void Start()
 	{
 		AudioManager.Instance.PlaySound(menuMusic);
+		AudioManager.Instance.StopSound("GameplayMusic");
 	}
 
 	public void Update()

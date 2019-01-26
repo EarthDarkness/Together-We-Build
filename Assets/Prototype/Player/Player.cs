@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 	[BoxGroup("Menu")]
 	public GameObject arrows;
 
+	buttonGuide guide = null;
+
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
 	private Vector2 movement = Vector2.zero;
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour
 		startPos = transform.position;
 		startRot = transform.rotation;
 		//ActivePlayer(playerData.ID);
+
+		guide =	transform.GetComponentInChildren<buttonGuide>();
 
 		if (IsActive())
 		{
@@ -246,6 +250,10 @@ public class Player : MonoBehaviour
 		{
 			return;
 		}
+		if (interactBlock && guide)
+			guide.Grab();
+		if (!interactBlock && guide)
+			guide.Clear();
 		if (UNInput.GetButtonDown(playerData.ID, ButtonCode.A))
 		{
 			if (interactBlock)
@@ -257,6 +265,11 @@ public class Player : MonoBehaviour
 
 	private void DropBlock()
 	{
+		
+		if (catchBlock && guide)
+			guide.Throw();
+		if (!catchBlock && guide)
+			guide.Clear();
 		if (UNInput.GetButtonDown(playerData.ID, ButtonCode.B))
 		{
 			if (catchBlock)
@@ -292,6 +305,8 @@ public class Player : MonoBehaviour
 
 		catchBlock.transform.parent = ctrl.HandTransform();
 
+		AudioManager.Instance.PlaySound("Catch");
+
 		yield return null;
 	}
 
@@ -310,6 +325,7 @@ public class Player : MonoBehaviour
 		catchBlock.rigidBody.AddForce(
 			(transform.forward + Vector3.up).normalized * 500f
 		);//Tried and true 500 power 
+		AudioManager.Instance.PlaySound("Throw");
 		catchBlock.GetComponentInChildren<ParticleSystem>().Play();
 		catchBlock = null;
 
