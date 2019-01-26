@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using NaughtyAttributes;
 
@@ -8,20 +9,9 @@ public class GameManager : MonoBehaviour
 	public BlockManager blockManager;
 	public List<Block> puzzle = new List<Block>();
 
-	public void Update()
+	public void Start()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			if (puzzle.Count == 0)
-			{
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.right * 3f,
-					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-			}
-		}
+		StartCoroutine(TrySpawn());
 	}
 
 	public void OnTriggerEnter(Collider other)
@@ -56,4 +46,23 @@ public class GameManager : MonoBehaviour
 			//Player p = other.GetComponentInParent<Player>();
 		}
 	}
+
+	private IEnumerator TrySpawn()
+	{
+		while(true)
+		{
+			if (puzzle.Count == 0)
+			{
+				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f,
+					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f,
+					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+				puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.right * 3f,
+					blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+				yield return new WaitForSeconds(20f);
+			}
+			yield return null;
+		}
+	}
+
 }
