@@ -2,6 +2,7 @@
 using UnityEngine;
 using UniversalNetworkInput;
 
+[RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
 	[BoxGroup("Atributes")]
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
 	{
 		if (controller.isGrounded)
 		{			
-			moveDirection = new Vector3(UNInput.GetAxis(AxisCode.LeftStickHorizontal), 0.0f, UNInput.GetAxis(AxisCode.LeftStickVertical);
+			moveDirection = new Vector3(UNInput.GetAxis(AxisCode.LeftStickHorizontal), 0.0f, UNInput.GetAxis(AxisCode.LeftStickVertical));
 			moveDirection = transform.TransformDirection(moveDirection);
 			moveDirection = moveDirection * speed;
 
