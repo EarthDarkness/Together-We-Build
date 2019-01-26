@@ -26,17 +26,17 @@ AnimationClip:
       - serializedVersion: 2
         time: 0.21666667
         value: {x: 0, y: 0.62, z: 0}
-        inSlope: {x: 0, y: -5.16923, z: 0}
-        outSlope: {x: 0, y: -5.16923, z: 0}
+        inSlope: {x: 0, y: -5.599999, z: 0}
+        outSlope: {x: 0, y: -5.599999, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: {x: 0, y: 0.06, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: {x: -0.00053501, y: 0.59748, z: 0.00000095367}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -62,13 +62,13 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.43333334
-        value: {x: 61.50155, y: 491.51657, z: 54.20739}
+        time: 0.4
+        value: {x: 41.980663, y: 491.51657, z: 54.20739}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: {x: 30, y: 470, z: 150}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -106,7 +106,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -138,13 +138,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: -0.00053501
         inSlope: 0
         outSlope: 0
@@ -168,17 +168,17 @@ AnimationClip:
       - serializedVersion: 2
         time: 0.21666667
         value: 0.62
-        inSlope: -5.16923
-        outSlope: -5.16923
+        inSlope: -5.599999
+        outSlope: -5.599999
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: 0.06
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: 0.59748
         inSlope: 0
         outSlope: 0
@@ -206,13 +206,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: 0.00000095367
         inSlope: 0
         outSlope: 0
@@ -240,13 +240,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
-        value: 61.50155
+        time: 0.4
+        value: 41.980663
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: 30
         inSlope: 0
         outSlope: 0
@@ -274,13 +274,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: 491.51657
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: 470
         inSlope: 0
         outSlope: 0
@@ -308,13 +308,13 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.43333334
+        time: 0.4
         value: 54.20739
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.75
+        time: 0.5833333
         value: 150
         inSlope: 0
         outSlope: 0
