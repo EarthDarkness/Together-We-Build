@@ -76,7 +76,7 @@ public class GameManager : Singleton<GameManager>
 
             if (puzzleBlocks.Count <= 0)
             {
-
+                failedTimer = 0;
 				playerPuzzles[0].transform.parent.parent.GetChild(0).gameObject.SetActive(true);
                 Debug.Log("Test");
                 for (int i = 0; i < players.Count; i++)
@@ -122,7 +122,6 @@ public class GameManager : Singleton<GameManager>
 
             if (won)
             {
-                //houseFloor++;
                 for (int i = 0; i < players.Count; i++)
                 {
                     for (int j = 0; j < 3; j++)
@@ -134,19 +133,21 @@ public class GameManager : Singleton<GameManager>
                     }
                    
                 }
-                //if (houseFloor >= house.MaxHouseFloor)
-                //{
-                //    //Finished the game
-                //    break;
-                //}
 
 
-                house.CreateFloor(houseFloor);
+                houseFloor++;
+                if (houseFloor >= house.MaxHouseFloor)
+                {
+                    //Finished the game
+                    break;
+                }
+
+                house.CreateFloor(houseFloor - 1);
 
                 puzzleNumber++;
                 for (int i = 0; i < puzzleNumber; i++)
                 {
-                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
                             blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
                     puzzleBlocks[i].stoppd = true;
                 }

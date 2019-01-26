@@ -91,7 +91,12 @@ public class InputPuzzle : MonoBehaviour
 
     public void CreatePuzzle(PuzzleType type, int controllerID, int combinationSize = 3, bool randCombination = true, bool randAlternative = true )
     {
+        isComplete = false;
+
         puzzleType = type;
+        ResetCombination();
+
+        percentage = 0;
 
         this.controllerID = controllerID;
 
