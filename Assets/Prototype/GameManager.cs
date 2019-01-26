@@ -51,8 +51,14 @@ public class GameManager : Singleton<GameManager>
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Block"))
+        if (other.CompareTag("Block") )
         {
+            if (other.GetComponent<Rigidbody>().isKinematic || puzzleBlocks.Count <= 0)
+            {
+                Debug.Log("Finished");
+                return;
+            }
+
             Block b = other.GetComponent<Block>();
 
             for (int i = 0; i < puzzleBlocks.Count; i++)
@@ -68,20 +74,22 @@ public class GameManager : Singleton<GameManager>
 
             if (puzzleBlocks.Count <= 0)
             {
+
 				playerPuzzles[0].transform.parent.parent.GetChild(0).gameObject.SetActive(true);
                 Debug.Log("Test");
                 for (int i = 0; i < players.Count; i++)
                 {
                     int randType = Random.Range(0, 3);
-                    playerPuzzles[i].CreatePuzzle((InputPuzzle.PuzzleType)randType, 4);
-                    playerPuzzles[i].transform.GetChild(randType).gameObject.SetActive(true);
-                    playerPuzzles[i].transform.GetChild(randType).GetComponentInChildren<ButtonCodeWriter>().SetText();
+                    Debug.Log(i + " : " + players[i].playerData.ID);
+                    playerPuzzles[players[i].playerData.playerID].CreatePuzzle((InputPuzzle.PuzzleType)randType, players[i].playerData.ID, 4);
+                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(randType).gameObject.SetActive(true);
+                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(randType).GetComponentInChildren<ButtonCodeWriter>().SetText();
 
 
-                    playerPanel.transform.GetChild(i).gameObject.SetActive(true);
+                    playerPanel.transform.GetChild(players[i].playerData.playerID).gameObject.SetActive(true);
 					players[i].Build(true);
-                    StartCoroutine(CheckForPuzzles(playerPuzzles.Take(players.Count).ToList()));
                 }
+                StartCoroutine(CheckForPuzzles(playerPuzzles.Take(players.Count).ToList()));
             }
         }
     }
@@ -102,6 +110,8 @@ public class GameManager : Singleton<GameManager>
             bool won = true;
             foreach (InputPuzzle puzzle in inputPuzzles)
             {
+                Debug.Log(puzzle.gameObject.name + " : " + puzzle.isComplete);
+
                 if (!puzzle.isComplete)
                 {
                     won = false;
@@ -111,13 +121,33 @@ public class GameManager : Singleton<GameManager>
             if (won)
             {
                 //houseFloor++;
+                for (int i = 0; i < players.Count; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        playerPuzzles[0].transform.parent.parent.GetChild(0).gameObject.SetActive(false);
+                        playerPuzzles[players[i].playerData.playerID].transform.GetChild(j).gameObject.SetActive(false);
+                        playerPanel.transform.GetChild(players[i].playerData.playerID).gameObject.SetActive(false);
+                        players[i].Build(false);
+                    }
+                   
+                }
                 //if (houseFloor >= house.MaxHouseFloor)
                 //{
                 //    //Finished the game
                 //    break;
                 //}
-                Debug.Log("Venceu!");
-                //house.CreateFloor(houseStartPos, houseFloor);
+
+
+                house.CreateFloor(houseFloor);
+
+                puzzleNumber++;
+                for (int i = 0; i < puzzleNumber; i++)
+                {
+                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+                            blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+                    puzzleBlocks[i].stoppd = true;
+                }
                 break;
             }
 
