@@ -1,9 +1,8 @@
-﻿using System;
+﻿using NaughtyAttributes;
+using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UniversalNetworkInput;
-using NaughtyAttributes;
 
 public class InputPuzzle : MonoBehaviour
 {
@@ -19,11 +18,22 @@ public class InputPuzzle : MonoBehaviour
     [ShowIf("ShowPress"), ReorderableList]
     public ButtonCode[] randButton = { ButtonCode.A, ButtonCode.B, ButtonCode.X, ButtonCode.Y };
 
-    [ShowIf("ShowCombination"), ReorderableList]
+    [ShowIf("ShowCombination"), ReorderableList, ReadOnly]
     public ButtonCode[] combButtons = { ButtonCode.A, ButtonCode.LeftBumper, ButtonCode.RightBumper };
 
-    [ShowIf("ShowAlternate"), ReorderableList,OnValueChanged("AlternateMaxTwo")]
+    [ShowIf("ShowAlternate"), ReorderableList, OnValueChanged("AlternateMaxTwo"), ReadOnly]
     public ButtonCode[] altButton = { ButtonCode.A, ButtonCode.B };
+
+    private ButtonCode[] availableButtons = { ButtonCode.A, ButtonCode.B, ButtonCode.LeftBumper, ButtonCode.RightBumper, ButtonCode.DPadDown, ButtonCode.DPadUp, ButtonCode.DPadLeft, ButtonCode.DPadRight };
+
+    private ButtonCode[][] altButtonCombinations = { 
+       new ButtonCode[] { ButtonCode.A, ButtonCode.B },
+       new ButtonCode[] { ButtonCode.LeftBumper, ButtonCode.RightBumper },
+       new ButtonCode[] { ButtonCode.X, ButtonCode.Y },
+       new ButtonCode[] { ButtonCode.X, ButtonCode.B },
+       new ButtonCode[] { ButtonCode.DPadLeft, ButtonCode.DPadRight },
+       new ButtonCode[] { ButtonCode.DPadUp, ButtonCode.DPadDown }
+    };
 
     private List<ButtonCode> wrongButtons = new List<ButtonCode>();
 
@@ -41,6 +51,8 @@ public class InputPuzzle : MonoBehaviour
     public float resetTime = 0.5f;
     float resetTimer = 0.0f;
     int combCount = 0;
+
+    public bool isComplete = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -74,52 +86,62 @@ public class InputPuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (puzzleType)
+        if (!isComplete)
         {
-            case PuzzleType.Press:
-                if (UNInput.GetButtonDown(randButton[buttonSelected]))
-                {
-                    percentage += percentageIncrease;
-                }
-
-                percentage -= Mathf.Clamp(percentageDecrease * Time.deltaTime, 0, 100f);
-                Debug.Log(percentage);
-                break;
-            case PuzzleType.Alternate:
-                if (UNInput.GetButtonDown(nextPress))
-                {
-                    nextPress = nextPress != altButton[0] ? altButton[0] : altButton[1];
-                    percentage += percentageIncrease;
-                }
-                percentage -= Mathf.Clamp(percentageDecrease * Time.deltaTime, 0, 100f);
-                Debug.Log(percentage);
-                break;
-            case PuzzleType.Combination:
-                if (resetTimer >= resetTime)
-                {
-                    ResetCombination();
-                }
-
-                if (UNInput.GetButtonDown(combButtons[combCount]))
-                {
-                    combCount++;
-                    if (combCount == combButtons.Length)
+            switch (puzzleType)
+            {
+                case PuzzleType.Press:
+                    if (UNInput.GetButtonDown(randButton[buttonSelected]))
                     {
-                        //Finished Combination.
-                        combCount = 0;
+                        percentage += percentageIncrease;
+                        if (percentage >= 100.0f)
+                        {
+                            isComplete = true;
+                        }
                     }
-                }
-                for (int i = 0; i < wrongButtons.Count; i++)
-                {
-                    if (UNInput.GetButtonDown(wrongButtons[i]))
+
+                    percentage -= percentageDecrease * Time.deltaTime;
+                    percentage = Mathf.Abs(percentage);
+                    break;
+                case PuzzleType.Alternate:
+                    if (UNInput.GetButtonDown(nextPress))
+                    {
+                        nextPress = nextPress != altButton[0] ? altButton[0] : altButton[1];
+                        percentage += percentageIncrease;
+                        if (percentage >= 100.0f)
+                        {
+                            isComplete = true;
+                        }
+                    }
+                    percentage -= percentageDecrease * Time.deltaTime;
+                    percentage = Mathf.Abs(percentage);
+                    break;
+                case PuzzleType.Combination:
+                    if (resetTimer >= resetTime)
                     {
                         ResetCombination();
-                        resetTimer = 0.0f;
                     }
-                }
 
-                resetTimer += Time.deltaTime;
-                break;
+                    if (UNInput.GetButtonDown(combButtons[combCount]))
+                    {
+                        combCount++;
+                        if (combCount == combButtons.Length)
+                        {
+                            isComplete = true;
+                            combCount = 0;
+                        }
+                    }
+                    for (int i = 0; i < wrongButtons.Count; i++)
+                    {
+                        if (UNInput.GetButtonDown(wrongButtons[i]))
+                        {
+                            ResetCombination();
+                            resetTimer = 0.0f;
+                        }
+                    }
+                    resetTimer += Time.deltaTime;
+                    break;
+            }
         }
 
     }
@@ -128,6 +150,22 @@ public class InputPuzzle : MonoBehaviour
     {
         resetTimer = 0.0f;
         combCount = 0;
+    }
+
+    public void RandomizeAlternate()
+    {
+        int selectedAlt = UnityEngine.Random.Range(0, altButtonCombinations.Length);
+        altButton = altButtonCombinations[selectedAlt];
+    }
+
+    public void RandomizeCombination(int combinationSize)
+    {
+        combButtons = new ButtonCode[combinationSize];
+        for (int i = 0; i < combinationSize; i++)
+        {
+            int combRand = UnityEngine.Random.Range(0, availableButtons.Length);
+            combButtons[i] = availableButtons[combRand];
+        }
     }
 
     private void AlternateMaxTwo()
@@ -152,5 +190,4 @@ public class InputPuzzle : MonoBehaviour
     {
         return puzzleType == PuzzleType.Combination ? true : false;
     }
-
 }

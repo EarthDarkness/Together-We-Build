@@ -8,7 +8,14 @@ public class House : ScriptableObject
     public GameObject[] floorPrefabs;
     public GameObject[] floorRoofs;
 
+    private GameObject[] instantiatedFloors;
+
     float timer = 0;
+
+    private void Awake()
+    {
+        instantiatedFloors = new GameObject[MaxHouseFloor];   
+    }
 
     public int MaxHouseFloor
     {
@@ -19,10 +26,15 @@ public class House : ScriptableObject
         }
     }
 
+    public void RemoveFloor(int floorIndex)
+    {
+        instantiatedFloors[floorIndex].GetComponent<Animator>().Play("DestroyAnim");
+    }
 
     public GameObject CreateFloor(Vector3 pos, int floorIndex)
     {
-        return Instantiate(floorPrefabs[floorIndex], pos, Quaternion.identity);
+        instantiatedFloors[floorIndex] = Instantiate(floorPrefabs[floorIndex], pos, Quaternion.identity);
+        return instantiatedFloors[floorIndex];
     }
 
     //IEnumerator GenerateRoof(int roofIndex)
