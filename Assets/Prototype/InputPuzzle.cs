@@ -188,6 +188,7 @@ public class InputPuzzle : MonoBehaviour
                         {
                             combCount++;
                         }
+						transform.GetChild(2).GetChild(1).GetComponentInChildren<ButtonCodeWriter>().SetText(combCount);
                         if(combCount >= combButtons.Length)
                         {
                             Debug.Log("Completed");
