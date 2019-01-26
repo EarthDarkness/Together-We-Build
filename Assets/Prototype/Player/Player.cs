@@ -9,10 +9,10 @@ public class Player : MonoBehaviour
 	public PlayerData playerData;
 
 	[BoxGroup("Model")]
-	public GameObject[] models;
+	public PlayerModels models;
 
-	[BoxGroup("Model")]
-	public GameObject skinColors;
+	[BoxGroup("Skin")]
+	public SkinColors skinColors;
 
 	[BoxGroup("PROTOTYPE")]
 	public GameObject body, spawn;
@@ -97,7 +97,6 @@ public class Player : MonoBehaviour
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
 		//transform.position = startPos;
 		//transform.rotation = startRot;
-
 
 		spawn.SetActive(true);
 		body.SetActive(false);

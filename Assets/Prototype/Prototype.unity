@@ -267,6 +267,18 @@ Prefab:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: skinColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab5651f7840b614ab97a048c5c26432,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: models
+      value: 
+      objectReference: {fileID: 11400000, guid: b7ed688d7ec3b9e43aecebd564ad3e38,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6089a39fd7e04b64fbe23287e4a88117, type: 2}
   m_IsPrefabParent: 0
@@ -445,6 +457,18 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: fc1f1ac203c7681438ae099a87ee27eb,
         type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: skinColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab5651f7840b614ab97a048c5c26432,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: models
+      value: 
+      objectReference: {fileID: 11400000, guid: b7ed688d7ec3b9e43aecebd564ad3e38,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6089a39fd7e04b64fbe23287e4a88117, type: 2}
   m_IsPrefabParent: 0
@@ -496,6 +520,18 @@ Prefab:
       propertyPath: playerData
       value: 
       objectReference: {fileID: 11400000, guid: 00371994008da5d43b1198eb79dabf6e,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: skinColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab5651f7840b614ab97a048c5c26432,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: models
+      value: 
+      objectReference: {fileID: 11400000, guid: b7ed688d7ec3b9e43aecebd564ad3e38,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6089a39fd7e04b64fbe23287e4a88117, type: 2}
@@ -601,6 +637,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockManager: {fileID: 189058549}
   puzzle: []
+  players: []
+  puzzleNumber: 3
 --- !u!54 &1041003614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -749,6 +787,18 @@ Prefab:
       propertyPath: playerData
       value: 
       objectReference: {fileID: 11400000, guid: efe559df5342a964d92b654d1af63530,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: skinColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab5651f7840b614ab97a048c5c26432,
+        type: 2}
+    - target: {fileID: 114279698946768512, guid: 6089a39fd7e04b64fbe23287e4a88117,
+        type: 2}
+      propertyPath: models
+      value: 
+      objectReference: {fileID: 11400000, guid: b7ed688d7ec3b9e43aecebd564ad3e38,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6089a39fd7e04b64fbe23287e4a88117, type: 2}
