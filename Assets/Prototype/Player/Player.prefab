@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 6076358933659325805}
   - component: {fileID: 3753437833989877473}
   - component: {fileID: 3753437833989877472}
+  - component: {fileID: 5538669421582480550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -143,12 +144,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df0b19a15933fb4484ca19e0f99ad35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
-  speed: 6
-  jumpSpeed: 8
-  gravity: 20
+  playerData: {fileID: 0}
   body: {fileID: 1982285176378553572}
   spawn: {fileID: 8836452075130864710}
+  interactBlock: {fileID: 0}
+  catchBlock: {fileID: 0}
+--- !u!136 &5538669421582480550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753437833989877471}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 3.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4058776311139349612
 GameObject:
   m_ObjectHideFlags: 0
