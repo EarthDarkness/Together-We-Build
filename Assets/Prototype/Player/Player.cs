@@ -27,8 +27,14 @@ public class Player : MonoBehaviour
 		startRot = transform.rotation;
 		ActivePlayer(playerData.ID);
 
-		if (!IsActive())
+		if (IsActive())
+		{
+			GameManager.Instance.players.Add(this);
+		}
+		else
+		{
 			gameObject.SetActive(false);
+		}
 	}
 
 	private void Update()
@@ -82,7 +88,6 @@ public class Player : MonoBehaviour
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
-
 		//transform.position = startPos;
 		//transform.rotation = startRot;
 

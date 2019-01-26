@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 	[Required]
 	public BlockManager blockManager;
 	public List<Block> puzzle = new List<Block>();
+	public List<Player> players = new List<Player>();
 
     public int puzzleNumber = 3;
 
