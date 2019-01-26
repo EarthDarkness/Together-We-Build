@@ -156,9 +156,13 @@ public class GameManager : Singleton<GameManager>
 
             if (failedTimer >= failedPuzzleTime)
             {
-                //Players losed the puzzle - return a floor
-                //house.RemoveFloor(houseFloor);
-                Debug.Log("Perdeu!");
+                puzzleNumber++;
+                for (int i = 0; i < puzzleNumber; i++)
+                {
+                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+                            blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+                    puzzleBlocks[i].stoppd = true;
+                }
                 break;
             }
 
