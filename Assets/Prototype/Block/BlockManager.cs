@@ -13,7 +13,7 @@ public class BlockManager : MonoBehaviour
 		StartCoroutine(InstantiateBlock(.5f));
 	}
 
-	private IEnumerator InstantiateBlock(float interval)
+	private IEnumerator InstantiateBlock(float interval, PlayerData playerData = null)
 	{
 		float timer = 0f;
 		float time = interval;
@@ -24,7 +24,7 @@ public class BlockManager : MonoBehaviour
 			timer += Time.deltaTime;
 			if (timer > interval - (interval * .1f))
 			{
-				CreateBlock();
+				CreateBlock(Vector3.zero);
 				++blockCount;
 				timer = 0f;
 			}
@@ -33,10 +33,27 @@ public class BlockManager : MonoBehaviour
 		}
 	}
 
-	private void CreateBlock()
+	public Block CreateBlock(Vector3 position, BlockData block = null)
 	{
-		blockBase.GetComponent<Block>().blockData = blockData[Random.Range(0,blockData.Length)];
-		GameObject.Instantiate(blockBase, new Vector3(Random.Range(0f, 20f)-10f, 15f, Random.Range(0f, 20f)-15f), Quaternion.identity, null);
+		Block blockRef;
+		if (block)
+		{
+			blockBase.GetComponent<Block>().blockData = block;
+			GameObject GO = GameObject.Instantiate(blockBase, position, Quaternion.identity, null);
+			blockRef = GO.GetComponent<Block>();
+			//blockRef.outline.OutlineColor = blockRef.meshRenderer.material.color;
+			//blockRef.meshRenderer.material.color = Color.white;
+			blockRef.rigidBody.isKinematic = true;
+			blockRef.name = "Block - GameManager";
+		}
+		else
+		{
+			blockBase.GetComponent<Block>().blockData = blockData[Random.Range(0, blockData.Length)];
+			GameObject GO = GameObject.Instantiate(blockBase, new Vector3(Random.Range(0f, 12f) - 6f, 15f, Random.Range(0f, 12f) - 10f), Quaternion.identity, null);
+			blockRef = GO.GetComponent<Block>();
+			blockRef.DestroyBlock();
+		}
+		return blockRef;
 	}
 
 }

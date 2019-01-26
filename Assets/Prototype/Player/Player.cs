@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 		controller = GetComponent<CharacterController>();
 		startPos = transform.position;
 		startRot = transform.rotation;
+		body.GetComponent<MeshRenderer>().material.color = playerData.color;
+		spawn.GetComponent<MeshRenderer>().material.color = playerData.color;
 		DesactivePlayer();
 	}
 

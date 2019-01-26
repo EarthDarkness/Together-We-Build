@@ -1,26 +1,30 @@
 ﻿using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
+using System.Collections.Generic;
 
 public class Block : MonoBehaviour
 {
 	[BoxGroup("BlockData")]
 	public BlockData blockData;
 
-	[HideInInspector]
+	[BoxGroup("References")]
 	public Rigidbody rigidBody;
 
-	private MeshRenderer meshRenderer;
-	private Outline outline;
+	[BoxGroup("References")]
+	public MeshRenderer meshRenderer;
+
+	[BoxGroup("References")]
+	public Outline outline;
+
+	[HideInInspector]
+	public Player player;
 
 	private void Start()
 	{
-		outline = GetComponent<Outline>();
-		meshRenderer = GetComponent<MeshRenderer>();
-		rigidBody = GetComponent<Rigidbody>();
 		Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
-		meshRenderer.material.color =  blockData.color;
+		meshRenderer.material.color = blockData.color;
 		outline.OutlineColor = Color.white;
 	}
 
@@ -34,4 +38,8 @@ public class Block : MonoBehaviour
 		outline.enabled = false;
 	}
 
+	public void DestroyBlock()
+	{
+		Destroy(gameObject,10f);
+	}
 }

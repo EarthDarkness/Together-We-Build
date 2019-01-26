@@ -16,4 +16,7 @@ public class PlayerData : ScriptableObject
 
 	[BoxGroup("Atributes")]
 	public float gravity = 20.0f;
+
+	[BoxGroup("Atributes")]
+	public Color color = Color.black;
 }
