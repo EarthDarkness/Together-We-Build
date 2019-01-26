@@ -1,31 +1,46 @@
 ﻿using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-	[Required]
-	public BlockManager blockManager;
-	public List<Block> puzzle = new List<Block>();
-	public List<Player> players = new List<Player>();
+    [Required]
+    public BlockManager blockManager;
+
+
+    //[Required]
+    //public GameObject pressInterface, alternateInterface, combinationInterface;
+
+    [Required]
+    public GameObject playerPanel;
+
+    public List<Block> puzzleBlocks = new List<Block>();
+    public List<Player> players = new List<Player>();
     public House house;
 
     public int puzzleNumber = 3;
-    private int houseFloor = 0;
-    int playerNumber = 3;
     public float failedPuzzleTime = 5.0f;
-    private float failedTimer = 0.0f;
 
     public Vector3 houseStartPos;
+
+    private int houseFloor = 0;
+    private float failedTimer = 0.0f;
+
+    List<InputPuzzle> playerPuzzles = new List<InputPuzzle>();
+
 
     private void Start()
     {
         for (int i = 0; i < puzzleNumber; i++)
         {
-            puzzle.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+            puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
                     blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
         }
+
+        playerPuzzles.AddRange(playerPanel.GetComponentsInChildren<InputPuzzle>(true));
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -38,28 +53,32 @@ public class GameManager : Singleton<GameManager>
                 return;
             }
             Block currentBlock;
-            for (int i = 0; i < puzzle.Count; i++)
+            for (int i = 0; i < puzzleBlocks.Count; i++)
             {
-                if (puzzle[i].blockData.ID == p.catchBlock.blockData.ID)
+                if (puzzleBlocks[i].blockData.ID == p.catchBlock.blockData.ID)
                 {
-                    Destroy(puzzle[i].gameObject, .1f);
+                    Destroy(puzzleBlocks[i].gameObject, .1f);
                     Destroy(p.catchBlock.gameObject, .1f);
-                    puzzle.RemoveAt(i);
+                    puzzleBlocks.RemoveAt(i);
                     p.catchBlock = null;
                     break;
                 }
             }
 
-            if (puzzle.Count <= 0)
+            if (puzzleBlocks.Count <= 0)
             {
-                List<InputPuzzle> playerPuzzles = new List<InputPuzzle>();
-                for (int i = 0; i < playerNumber; i++)
+                Debug.Log("Test");
+                for (int i = 0; i < players.Count; i++)
                 {
-                    InputPuzzle puzzle = new GameObject().AddComponent<InputPuzzle>();
-                    puzzle.puzzleType = (InputPuzzle.PuzzleType)Random.Range(0, 3);
-                    puzzle.RandomizeAlternate();
-                    puzzle.RandomizeCombination(3);
-                    playerPuzzles.Add(puzzle);
+                    int randType = Random.Range(0, 3);
+                    playerPuzzles[i].CreatePuzzle((InputPuzzle.PuzzleType)2, 4);
+                    playerPuzzles[i].transform.GetChild(randType).gameObject.SetActive(true);
+                    playerPuzzles[i].transform.GetChild(randType).GetComponentInChildren<ButtonCodeWriter>().SetText();
+
+
+                    playerPanel.transform.GetChild(i).gameObject.SetActive(true);
+
+                    StartCoroutine(CheckForPuzzles(playerPuzzles.Take(players.Count).ToList()));
                 }
             }
         }
@@ -89,20 +108,22 @@ public class GameManager : Singleton<GameManager>
 
             if (won)
             {
-                houseFloor++;
-                if (houseFloor >= house.MaxHouseFloor)
-                {
-                    //Finished the game
-                    break;
-                }
-
-                house.CreateFloor(houseStartPos, houseFloor);
+                //houseFloor++;
+                //if (houseFloor >= house.MaxHouseFloor)
+                //{
+                //    //Finished the game
+                //    break;
+                //}
+                Debug.Log("Venceu!");
+                //house.CreateFloor(houseStartPos, houseFloor);
                 break;
             }
 
             if (failedTimer >= failedPuzzleTime)
             {
                 //Players losed the puzzle - return a floor
+                //house.RemoveFloor(houseFloor);
+                Debug.Log("Perdeu!");
                 break;
             }
 
@@ -110,6 +131,7 @@ public class GameManager : Singleton<GameManager>
 
             yield return null;
         }
+        yield return null;
     }
 
 }
