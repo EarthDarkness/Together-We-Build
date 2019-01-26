@@ -572,14 +572,14 @@ MonoBehaviour:
   m_text: Choose
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4f9843c79516ed1468b9b5a4f32e67e3, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286019447
+  m_fontColor: {r: 0.4705882, g: 0.4705882, b: 0.4705882, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -833,6 +833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockManager: {fileID: 0}
   puzzle: []
+  puzzleNumber: 3
 --- !u!54 &1041003614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1096,7 +1097,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 21bfcf9e19d9d004dba81cc4725ad404, type: 2}
+  - {fileID: 2100000, guid: fd7e0ab2616eef344b428d7107ab46e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

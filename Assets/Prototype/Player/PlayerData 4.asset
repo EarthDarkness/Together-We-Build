@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: PlayerData 4
   m_EditorClassIdentifier: 
   ID: -1
+  modelID: -1
+  playerColor: {r: 0.85294116, g: 0.7588236, b: 0, a: 1}
+  skinColor: {r: 0, g: 0, b: 0, a: 1}
   speed: 6
   jumpSpeed: 8
   gravity: 20
-  color: {r: 1, g: 0, b: 0.8896551, a: 1}

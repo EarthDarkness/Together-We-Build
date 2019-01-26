@@ -5,18 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Create PlayerData")]
 public class PlayerData : ScriptableObject
 {
-	[BoxGroup("Atributes")]
+	[BoxGroup("Controller")]
 	public int ID = -1;
 
-	[BoxGroup("Atributes")]
+	[BoxGroup("Model")]
+	public int modelID = -1;
+	
+	[BoxGroup("Model")]
+	public Color playerColor = Color.black;
+	
+	[BoxGroup("Model")]
+	public Color skinColor = Color.black;
+
+	[BoxGroup("Movement")]
 	public float speed = 6.0f;
 
-	[BoxGroup("Atributes")]
+	[BoxGroup("Movement")]
 	public float jumpSpeed = 8.0f;
 
-	[BoxGroup("Atributes")]
+	[BoxGroup("Movement")]
 	public float gravity = 20.0f;
 
-	[BoxGroup("Atributes")]
-	public Color color = Color.black;
 }

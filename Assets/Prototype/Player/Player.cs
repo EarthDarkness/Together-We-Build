@@ -69,8 +69,7 @@ public class Player : MonoBehaviour
 	{
 		playerData.ID = id;
 
-		body.GetComponent<MeshRenderer>().material.color = playerData.color;
-		spawn.GetComponent<MeshRenderer>().material.color = playerData.color;
+		body.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
 
 		body.SetActive(true);
 		spawn.SetActive(false);
@@ -82,6 +81,7 @@ public class Player : MonoBehaviour
 	{
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
+		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
 
 		//transform.position = startPos;
 		//transform.rotation = startRot;
