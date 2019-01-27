@@ -21,7 +21,9 @@ public class Block : MonoBehaviour
 	[HideInInspector]
 	public Player player;
 
-	public float timer = float.MaxValue;
+	public float maxLife = 10.0f;
+
+	public float timer = 10.0f;
 
 	public bool stoppd = false;
 
@@ -34,6 +36,10 @@ public class Block : MonoBehaviour
 
 	private void Update()
 	{
+		Color col = blockData.color;
+		col.a = timer/maxLife;
+		meshRenderer.material.color = col;
+
 		if(!stoppd)
 			timer -= Time.deltaTime;
 		if(timer < 0.0f)
@@ -52,6 +58,7 @@ public class Block : MonoBehaviour
 
 	public void DestroyBlock(float lifetime)
 	{
+		maxLife = lifetime;
 		timer = lifetime;
 	}
 }
