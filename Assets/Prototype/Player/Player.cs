@@ -109,10 +109,12 @@ public class Player : MonoBehaviour
 		{
 			if (increment)
 			{
+				AudioManager.Instance.PlaySound("IncrementSkin");
 				++skinToneID;
 			}
 			else
 			{
+				AudioManager.Instance.PlaySound("DecrementSkin");
 				--skinToneID;
 			}
 			skinToneID = (skinToneID + skinColors.skins.Length) % skinColors.skins.Length;
@@ -130,10 +132,12 @@ public class Player : MonoBehaviour
 		{
 			if (increment)
 			{
+				AudioManager.Instance.PlaySound("IncrementModel");
 				++playerData.modelID;
 			}
 			else
 			{
+				AudioManager.Instance.PlaySound("DecrementModel");
 				--playerData.modelID;
 			}
 			playerData.modelID = (playerData.modelID + 6) % 6;
@@ -154,6 +158,7 @@ public class Player : MonoBehaviour
 
 	public void ActivePlayer(int id, bool enablePlayerScript = true)
 	{
+		AudioManager.Instance.PlaySound("SubmitSound");
 		playerData.ID = id;
 		playerData.modelID = 0;
 		//body.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
