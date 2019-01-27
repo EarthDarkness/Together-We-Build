@@ -46,22 +46,17 @@ public class GameManager : Singleton<GameManager>
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Block"))
         {
-            Player p = other.GetComponentInParent<Player>();
-            if (!p.catchBlock)
-            {
-                return;
-            }
-            Block currentBlock;
+            Block b = other.GetComponent<Block>();
+
             for (int i = 0; i < puzzleBlocks.Count; i++)
             {
-                if (puzzleBlocks[i].blockData.ID == p.catchBlock.blockData.ID)
+                if (puzzleBlocks[i].blockData.ID == b.blockData.ID)
                 {
                     Destroy(puzzleBlocks[i].gameObject, .1f);
-                    Destroy(p.catchBlock.gameObject, .1f);
+                    b.timer = 0.0f;
                     puzzleBlocks.RemoveAt(i);
-                    p.catchBlock = null;
                     break;
                 }
             }

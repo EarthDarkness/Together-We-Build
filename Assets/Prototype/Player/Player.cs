@@ -183,17 +183,24 @@ public class Player : MonoBehaviour
 	{
 		if(Time.time < delay)
 			return;
-
-		if (controller.isGrounded)
-		{
-			movement.x = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickHorizontal);
-			movement.y = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickVertical);
+		
+		movement.x = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickHorizontal);
+		movement.y = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickVertical);
+		transform.rotation = Quaternion.LookRotation(
+			new Vector3(
+				movement.x,
+				0.0f,
+				movement.y
+			),
+			Vector3.up
+		);
+		if (controller.isGrounded){
 			moveDirection = new Vector3(
 				Mathf.Abs(movement.x) > .4f ? movement.x : 0f,
 				0.0f,
 				Mathf.Abs(movement.y) > .4f ? movement.y : 0f);
-			moveDirection = transform.TransformDirection(moveDirection);
-			moveDirection = moveDirection * playerData.speed;
+			//moveDirection = transform.TransformDirection(moveDirection);
+			moveDirection = moveDirection.normalized * playerData.speed;
 		}
 
 		// Apply gravity
@@ -202,7 +209,6 @@ public class Player : MonoBehaviour
 		// Move the controller
 		controller.Move(moveDirection * Time.deltaTime);
 
-		transform.rotation.SetLookRotation(moveDirection,Vector3.up);
 
 		//transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
@@ -233,7 +239,7 @@ public class Player : MonoBehaviour
 		{
 			if (catchBlock)
 			{
-				StartCoroutine(ThrowRoutine(1.1f));
+				StartCoroutine(ThrowRoutine(0.75f));
 			}
 		}
 	}
@@ -252,7 +258,9 @@ public class Player : MonoBehaviour
 		CharCtrl ctrl = GetComponentInChildren<CharCtrl>();
 		delay = Time.time + ctrl.Grab();
 		interactBlock.rigidBody.isKinematic = true;
-		interactBlock.GetComponent<Block>().stoppd = true;
+		Block blk = interactBlock.GetComponent<Block>();
+		blk.stoppd = true;
+		blk.EnableBlock();
 		catchBlock = interactBlock;
 		interactBlock = null;
 		
@@ -274,7 +282,9 @@ public class Player : MonoBehaviour
 		catchBlock.transform.parent = null;
 		catchBlock.GetComponent<Block>().stoppd = false;
 		catchBlock.rigidBody.isKinematic = false;
-		catchBlock.rigidBody.AddForce(Vector3.up * 500f);
+		catchBlock.rigidBody.AddForce(
+			(transform.forward + Vector3.up).normalized * 500f
+		);
 		catchBlock = null;
 
 		yield return null;
