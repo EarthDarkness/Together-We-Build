@@ -39,8 +39,8 @@ public class PlayerChecker : MonoBehaviour
 		{
 			if (playersActivated.Contains(id))
 			{
-				horizontal = UNInput.GetAxis(id, AxisCode.LeftStickHorizontal);
-				vertical = UNInput.GetAxis(id, AxisCode.LeftStickVertical);
+				horizontal = UNInput.GetAxis(players[id].playerData.ID, AxisCode.LeftStickHorizontal);
+				vertical = UNInput.GetAxis(players[id].playerData.ID, AxisCode.LeftStickVertical);
 				if (Mathf.Abs(horizontal) > .55f)
 				{
 					if (horizontal > 0f)
