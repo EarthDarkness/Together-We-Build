@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 	[BoxGroup("Block System")]
 	public Block interactBlock, catchBlock;
 
+	[BoxGroup("Menu")]
+	public GameObject arrows;
+
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
 	private Vector2 movement = Vector2.zero;
@@ -109,10 +112,12 @@ public class Player : MonoBehaviour
 		{
 			if (increment)
 			{
+				AudioManager.Instance.PlaySound("IncrementSkin");
 				++skinToneID;
 			}
 			else
 			{
+				AudioManager.Instance.PlaySound("DecrementSkin");
 				--skinToneID;
 			}
 			skinToneID = (skinToneID + skinColors.skins.Length) % skinColors.skins.Length;
@@ -130,10 +135,12 @@ public class Player : MonoBehaviour
 		{
 			if (increment)
 			{
+				AudioManager.Instance.PlaySound("IncrementModel");
 				++playerData.modelID;
 			}
 			else
 			{
+				AudioManager.Instance.PlaySound("DecrementModel");
 				--playerData.modelID;
 			}
 			playerData.modelID = (playerData.modelID + 6) % 6;
@@ -154,8 +161,18 @@ public class Player : MonoBehaviour
 
 	public void ActivePlayer(int id, bool enablePlayerScript = true)
 	{
+		AudioManager.Instance.PlaySound("SubmitSound");
 		playerData.ID = id;
 		playerData.modelID = 0;
+		if (arrows)
+		{
+			foreach (MeshRenderer meshRenderer in arrows.GetComponentsInChildren<MeshRenderer>())
+			{
+				meshRenderer.material.color = playerData.playerColor;
+			}
+			arrows.SetActive(true);
+
+		}
 		//body.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
 		//body.SetActive(true);
 		spawn.SetActive(false);
@@ -167,6 +184,8 @@ public class Player : MonoBehaviour
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
 		playerData.modelID = -1;
+		if (arrows)
+			arrows.SetActive(false);
 		skinToneID = Random.Range(0, skinColors.skins.Length);
 		playerData.skinColor = skinColors.skins[skinToneID];
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
@@ -181,9 +200,9 @@ public class Player : MonoBehaviour
 
 	public void Movement()
 	{
-		if(Time.time < delay)
+		if (Time.time < delay)
 			return;
-		
+
 		movement.x = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickHorizontal);
 		movement.y = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickVertical);
 		transform.rotation = Quaternion.LookRotation(
@@ -194,7 +213,8 @@ public class Player : MonoBehaviour
 			),
 			Vector3.up
 		);
-		if (controller.isGrounded){
+		if (controller.isGrounded)
+		{
 			moveDirection = new Vector3(
 				Mathf.Abs(movement.x) > .4f ? movement.x : 0f,
 				0.0f,
@@ -244,7 +264,8 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void Build(bool state){
+	public void Build(bool state)
+	{
 		GetComponentInChildren<CharCtrl>().Build(state);
 	}
 
@@ -253,7 +274,8 @@ public class Player : MonoBehaviour
 		return playerData.ID != -1 ? true : false;
 	}
 
-	IEnumerator GrabRoutine(float wait){
+	IEnumerator GrabRoutine(float wait)
+	{
 
 		CharCtrl ctrl = GetComponentInChildren<CharCtrl>();
 		delay = Time.time + ctrl.Grab();
@@ -263,7 +285,7 @@ public class Player : MonoBehaviour
 		blk.EnableBlock();
 		catchBlock = interactBlock;
 		interactBlock = null;
-		
+
 		yield return new WaitForSeconds(wait);
 
 		catchBlock.transform.parent = ctrl.HandTransform();
@@ -271,8 +293,9 @@ public class Player : MonoBehaviour
 		yield return null;
 	}
 
-	
-	IEnumerator ThrowRoutine(float wait){
+
+	IEnumerator ThrowRoutine(float wait)
+	{
 		CharCtrl ctrl = GetComponentInChildren<CharCtrl>();
 
 		delay = Time.time + ctrl.Throw();

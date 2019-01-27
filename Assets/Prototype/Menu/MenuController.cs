@@ -38,9 +38,13 @@ public class MenuController : MonoBehaviour
 	[BoxGroup("CreditsToMenu")]
 	public AnimationCurve creditsAnimation;
 
+	[BoxGroup("Menu Music")]
+	public string menuMusic;
+
 	[Button]
 	public void MenoToCredits()
 	{
+		AudioManager.Instance.PlaySound("SubmitSound");
 		StartCoroutine(Move(menu, credits, menuAnimation, menuTime));
 		eventSystem.enabled = false;
 	}
@@ -48,17 +52,26 @@ public class MenuController : MonoBehaviour
 	[Button]
 	public void CreditsToMenu()
 	{
+		AudioManager.Instance.PlaySound("CancelSound");
 		StartCoroutine(Move(credits, menu, creditsAnimation, creaditsTime));
+		eventSystem.enabled = true;
 	}
 
 	public void MenuToChoose()
 	{
+		AudioManager.Instance.PlaySound("SubmitSound");
 		StartCoroutine(ChooseFade(menu, choose));
 	}
 
 	public void ChooseToMenu()
 	{
+		AudioManager.Instance.PlaySound("CancelSound");
 		StartCoroutine(ChooseFade(choose, menu));
+	}
+
+	public void Start()
+	{
+		AudioManager.Instance.PlaySound(menuMusic);
 	}
 
 	public void Update()
@@ -124,6 +137,18 @@ public class MenuController : MonoBehaviour
 	}
 	public static void Quit()
 	{
+		AudioManager.Instance.PlaySound("SubmitSound");
 		Application.Quit();
 	}
+
+	public void AudioPlay(string name)
+	{
+		AudioManager.Instance.PlaySound(name);
+	}
+
+	public void AudioStop(string name)
+	{
+		AudioManager.Instance.StopSound(name);
+	}
+
 }
