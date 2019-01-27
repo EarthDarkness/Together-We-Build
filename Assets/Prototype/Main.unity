@@ -1364,6 +1364,28 @@ MonoBehaviour:
     loop: 0
     isMusic: 0
     lastSource: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 958dcbd5ce54f45eb846e3815ab5b97d, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.8
+    minPitch: 1
+    maxPitch: 1
+    priority: 0
+    reverse: 0
+    loop: 0
+    isMusic: 1
+    lastSource: {fileID: 0}
+  - name: Lose
+    clip: {fileID: 8300000, guid: 6695aa2d8c01347d8b318a3fb985a83d, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.8
+    minPitch: 1
+    maxPitch: 1
+    priority: 0
+    reverse: 0
+    loop: 0
+    isMusic: 1
+    lastSource: {fileID: 0}
   mixer: {fileID: 0}
 --- !u!4 &325605595
 Transform:
