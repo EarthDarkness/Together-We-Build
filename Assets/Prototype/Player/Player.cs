@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 	private CharacterController controller;
 	private Vector2 movement = Vector2.zero;
 
+	private float delay = 0.0f;
+
 	private Vector3 startPos = Vector3.zero;
 	private Quaternion startRot = Quaternion.identity;
 	private bool canSetModelIndex = true;
@@ -178,6 +180,9 @@ public class Player : MonoBehaviour
 
 	public void Movement()
 	{
+		if(Time.time < delay)
+			return;
+
 		if (controller.isGrounded)
 		{
 			movement.x = UNInput.GetAxis(playerData.ID, AxisCode.LeftStickHorizontal);
@@ -214,7 +219,7 @@ public class Player : MonoBehaviour
 		{
 			if (interactBlock)
 			{
-				GetComponentInChildren<CharCtrl>().Grab();
+				delay = Time.time + GetComponentInChildren<CharCtrl>().Grab();
 				interactBlock.rigidBody.isKinematic = true;
 				catchBlock = interactBlock;
 				interactBlock = null;
@@ -228,7 +233,7 @@ public class Player : MonoBehaviour
 		{
 			if (catchBlock)
 			{
-				GetComponentInChildren<CharCtrl>().Throw();
+				delay = Time.time + GetComponentInChildren<CharCtrl>().Throw();
 				catchBlock.rigidBody.isKinematic = false;
 				catchBlock.rigidBody.AddForce(Vector3.up * 500f);
 				catchBlock = null;

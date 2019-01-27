@@ -21,6 +21,8 @@ public class CharCtrl : MonoBehaviour
 
 	Animator[] graph;
 
+	float grabDelay;
+	float throwDelay;
 
 	private void SetVisualModel(int id)
 	{
@@ -75,15 +77,18 @@ public class CharCtrl : MonoBehaviour
 
 	}
 
-	public void Grab(){
+	public float Grab(){
 		foreach(Animator anim in graph){
 			anim.SetTrigger("Grab");
 		}
+		return grabDelay;
 	}
-	public void Throw(){
+
+	public float Throw(){
 		foreach(Animator anim in graph){
 			anim.SetTrigger("Throw");
 		}
+		return throwDelay;
 	}
 	public void Build(bool state){
 		foreach(Animator anim in graph){
@@ -107,6 +112,16 @@ public class CharCtrl : MonoBehaviour
 	
 		graph = GetComponentsInChildren<Animator>();
 
+		
+		AnimatorClipInfo[] clips = graph[0].GetCurrentAnimatorClipInfo(0);
+		
+		foreach(AnimatorClipInfo clip in clips){
+			if(clip.clip.name == "Grab"){
+				grabDelay = clip.clip.length;
+			}else if(clip.clip.name == "Throw"){
+				throwDelay = clip.clip.length;
+			}
+		}
 	}
 	
 	void Update()
