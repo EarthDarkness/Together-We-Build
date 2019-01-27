@@ -10,8 +10,6 @@ public class House : ScriptableObject
 
     private GameObject[] instantiatedFloors;
 
-    float timer = 0;
-
     private void Awake()
     {
         instantiatedFloors = new GameObject[MaxHouseFloor];   

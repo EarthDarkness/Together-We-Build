@@ -26,13 +26,15 @@ public class Player : MonoBehaviour
 
 	private Vector3 startPos = Vector3.zero;
 	private Quaternion startRot = Quaternion.identity;
-
+	private bool canSetModelIndex = true;
+	private bool canSetSkinIndex = true;
+	private int skinToneID = 0;
 	private void Start()
 	{
 		controller = GetComponent<CharacterController>();
 		startPos = transform.position;
 		startRot = transform.rotation;
-		ActivePlayer(playerData.ID);
+		//ActivePlayer(playerData.ID);
 
 		if (IsActive())
 		{
@@ -78,15 +80,82 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public void IncrementModel()
+	{
+		SetModelIndex(true);
+	}
+
+	public void DecrementModel()
+	{
+		SetModelIndex(false);
+	}
+
+	public void IncrementSkin()
+	{
+		SetSkinIndex(true);
+	}
+
+	public void DecrementSkin()
+	{
+		SetSkinIndex(false);
+	}
+
+	private void SetSkinIndex(bool increment)
+	{
+		if (canSetSkinIndex)
+		{
+			if (increment)
+			{
+				++skinToneID;
+			}
+			else
+			{
+				--skinToneID;
+			}
+			skinToneID = (skinToneID + skinColors.skins.Length) % skinColors.skins.Length;
+
+			playerData.skinColor = skinColors.skins[skinToneID];
+
+			canSetSkinIndex = false;
+			Invoke("EnableSkinIndex", .5f);
+		}
+	}
+
+	private void SetModelIndex(bool increment)
+	{
+		if (canSetModelIndex)
+		{
+			if (increment)
+			{
+				++playerData.modelID;
+			}
+			else
+			{
+				--playerData.modelID;
+			}
+			playerData.modelID = (playerData.modelID + 6) % 6;
+			canSetModelIndex = false;
+			Invoke("EnableModelIndex", .5f);
+		}
+	}
+
+	private void EnableModelIndex()
+	{
+		canSetModelIndex = true;
+	}
+
+	private void EnableSkinIndex()
+	{
+		canSetSkinIndex = true;
+	}
+
 	public void ActivePlayer(int id, bool enablePlayerScript = true)
 	{
 		playerData.ID = id;
-
-		body.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
-
-		body.SetActive(true);
+		playerData.modelID = 0;
+		//body.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
+		//body.SetActive(true);
 		spawn.SetActive(false);
-
 		enabled = enablePlayerScript;
 	}
 
@@ -94,6 +163,9 @@ public class Player : MonoBehaviour
 	{
 		PlayerChecker.playersActivated.Remove(playerData.ID);
 		playerData.ID = -1;
+		playerData.modelID = -1;
+		skinToneID = Random.Range(0, skinColors.skins.Length);
+		playerData.skinColor = skinColors.skins[skinToneID];
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
 		//transform.position = startPos;
 		//transform.rotation = startRot;

@@ -101,7 +101,7 @@ public class MenuController : MonoBehaviour
 			fadeBackground.color = Color.Lerp(begin, end, timer); 
 			yield return null;
 		}
-
+				
 		origin.parent.gameObject.SetActive(false);
 		destiny.parent.gameObject.SetActive(true);
 
