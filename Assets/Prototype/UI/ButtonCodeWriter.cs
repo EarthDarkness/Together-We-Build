@@ -11,12 +11,12 @@ public class ButtonCodeWriter : MonoBehaviour
     public TextMeshProUGUI textMesh;
 
 
-    public void SetText()
+    public void SetText(int filled)
     {
         textMesh.text = string.Empty;
-        foreach (UniversalNetworkInput.ButtonCode code in codeVariable.keyCodes)
+        for(int i=filled;i<codeVariable.keyCodes.Length;++i)
         {
-            textMesh.text += "<sprite name=\"" + code.ToString() + "\">";
+            textMesh.text += "<sprite name=\"" + codeVariable.keyCodes[i].ToString() + "\">";
         }
     }
 
