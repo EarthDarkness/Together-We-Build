@@ -14,6 +14,8 @@ public class BlockManager : MonoBehaviour
 
 	private void Start()
 	{
+		AudioManager.Instance.PlaySound("GameplayMusic");
+		AudioManager.Instance.StopSound("MenuMusic");
 		StartCoroutine(InstantiateBlock(1.2f));
 	}
 
