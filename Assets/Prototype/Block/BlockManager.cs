@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NaughtyAttributes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ public class BlockManager : MonoBehaviour
 
 	public BlockData[] blockData;
 
+	[Required]
+	public Transform spawnArea;
+
 	private void Start()
 	{
-		StartCoroutine(InstantiateBlock(.5f));
+		StartCoroutine(InstantiateBlock(2.0f));
 	}
 
 	private IEnumerator InstantiateBlock(float interval, PlayerData playerData = null)
@@ -49,9 +53,24 @@ public class BlockManager : MonoBehaviour
 		else
 		{
 			blockBase.GetComponent<Block>().blockData = blockData[Random.Range(0, blockData.Length)];
-			GameObject GO = GameObject.Instantiate(blockBase, new Vector3(Random.Range(0f, 12f) - 6f, 15f, Random.Range(0f, 12f) - 20f), Quaternion.identity, null);
+			Vector3 pos = new Vector3(
+				Random.Range(
+					spawnArea.position.x - spawnArea.localScale.x,
+					spawnArea.position.x + spawnArea.localScale.x
+				),
+				Random.Range(
+					spawnArea.position.y - spawnArea.localScale.y,
+					spawnArea.position.y + spawnArea.localScale.y
+				),
+				Random.Range(
+					spawnArea.position.z - spawnArea.localScale.z,
+					spawnArea.position.z + spawnArea.localScale.z
+				)
+			);
+
+			GameObject GO = GameObject.Instantiate(blockBase, pos, Quaternion.identity, null);
 			blockRef = GO.GetComponent<Block>();
-			blockRef.DestroyBlock(10.0f);
+			blockRef.DestroyBlock(20.0f);
 		}
 		return blockRef;
 	}
