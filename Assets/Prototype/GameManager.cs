@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     private string loseString = "Without cooperation you can't create a sweet home.";
 
 
-    TextMeshPro endGameText;
+    public TextMeshProUGUI endGameText;
 
     [Required]
 	public FloatVariable PuzzleTimer;
@@ -142,7 +142,7 @@ public class GameManager : Singleton<GameManager>
 
                 house.CreateFloor(houseFloor);
                 houseFloor++;
-                if (houseFloor > house.MaxHouseFloor)
+                if (houseFloor >= house.MaxHouseFloor)
                 {
                     endGameText.text = winString;
                     endGameText.gameObject.SetActive(true);

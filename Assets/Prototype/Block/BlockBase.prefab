@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b131450ac1ddd45883428d7ce5618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockData: {fileID: 11400000, guid: 0bd6f7fc3a122ac41adcc5affeb51805, type: 2}
+  blockData: {fileID: 11400000, guid: e3fb78f772f4fbb479d0f2988914dc6f, type: 2}
   rigidBody: {fileID: 54194050587910202}
   meshRenderer: {fileID: 23464362254517864}
   outline: {fileID: 114883099393897810}
@@ -418,7 +418,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
