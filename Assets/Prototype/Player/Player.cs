@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
 		{
 			if (interactBlock)
 			{
+				GetComponentInChildren<CharCtrl>().Grab();
 				interactBlock.rigidBody.isKinematic = true;
 				catchBlock = interactBlock;
 				interactBlock = null;
@@ -155,6 +156,7 @@ public class Player : MonoBehaviour
 		{
 			if (catchBlock)
 			{
+				GetComponentInChildren<CharCtrl>().Throw();
 				catchBlock.rigidBody.isKinematic = false;
 				catchBlock.rigidBody.AddForce(Vector3.up * 500f);
 				catchBlock = null;

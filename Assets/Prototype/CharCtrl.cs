@@ -19,6 +19,7 @@ public class CharCtrl : MonoBehaviour
 	private GameObject adultFemale;
 	private GameObject adultNeutral;
 
+	Animator[] graph;
 
 
 	private void SetVisualModel(int id)
@@ -74,6 +75,22 @@ public class CharCtrl : MonoBehaviour
 
 	}
 
+	public void Grab(){
+		foreach(Animator anim in graph){
+			anim.SetTrigger("Grab");
+		}
+	}
+	public void Throw(){
+		foreach(Animator anim in graph){
+			anim.SetTrigger("Throw");
+		}
+	}
+	public void Build(bool state){
+		foreach(Animator anim in graph){
+			anim.SetBool("Throw", state);
+		}
+	}
+
 	private void Start()
 	{
 		adult = transform.GetChild(0).GetChild(0).gameObject;
@@ -86,10 +103,12 @@ public class CharCtrl : MonoBehaviour
 		childBase = child.transform.GetChild(0).gameObject;
 		childMale = child.transform.GetChild(2).gameObject;
 		childFemale = child.transform.GetChild(4).gameObject;
-		childNeutral = child.transform.GetChild(3).gameObject;		
-	}
+		childNeutral = child.transform.GetChild(3).gameObject;
+	
+		graph = GetComponentsInChildren<Animator>();
 
-	// Update is called once per frame
+	}
+	
 	void Update()
 	{
 		if(data == null)
