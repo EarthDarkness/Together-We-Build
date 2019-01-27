@@ -256,7 +256,7 @@ RectTransform:
   m_Children:
   - {fileID: 387968602}
   m_Father: {fileID: 114599817}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -644,7 +644,7 @@ Prefab:
     - target: {fileID: 224311207067532346, guid: c806e674a9597cb459310bb97dbb2c93,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1719658595617404, guid: c806e674a9597cb459310bb97dbb2c93, type: 2}
       propertyPath: m_IsActive
@@ -2002,6 +2002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f654bded0d18334899c5d15f4ee9287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDestroyOnLoad: 0
+  _destroyExistentObject: 0
   blockManager: {fileID: 189058549}
   PuzzleTimer: {fileID: 11400000, guid: 39c148bf194f107498aa103bdb07c7c1, type: 2}
   playerPanel: {fileID: 1274142361}
@@ -2011,7 +2013,7 @@ MonoBehaviour:
   puzzleNumber: 3
   failedPuzzleTime: 5
   houseStartPos: {x: 0, y: 0, z: 0}
-  remainingTime: 0
+  remainingTime: 60
 --- !u!54 &1041003614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2413,7 +2415,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 114599817}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

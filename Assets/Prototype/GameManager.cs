@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -31,7 +32,7 @@ public class GameManager : Singleton<GameManager>
     private int houseFloor = 0;
     private float failedTimer = 0.0f;
 
-	public float remainingTime = 0.0f;//0 == lose
+	public float remainingTime = 60.0f;//0 == lose
 
     List<InputPuzzle> playerPuzzles = new List<InputPuzzle>();
 
@@ -47,6 +48,7 @@ public class GameManager : Singleton<GameManager>
 
         playerPuzzles.AddRange(playerPanel.GetComponentsInChildren<InputPuzzle>(true));
 
+		StartCoroutine(UpdateTime());
     }
 
     public void OnTriggerEnter(Collider other)
@@ -141,5 +143,28 @@ public class GameManager : Singleton<GameManager>
 
         yield return null;
     }
+
+	IEnumerator UpdateTime()
+	{
+		TextMeshProUGUI textCtrl = null;
+		GameObject timeText = GameObject.Find("PuzzleCanvas");
+		if(timeText){
+			textCtrl = timeText.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+		}
+		while(remainingTime > 0.0f){
+			if(textCtrl == null)
+				break;
+
+			System.TimeSpan ts = System.TimeSpan.FromSeconds(remainingTime);
+
+			textCtrl.text = ts.Minutes.ToString("00") + ":" + ts.Seconds.ToString("00");
+
+			remainingTime -= Time.deltaTime;
+
+			yield return null;
+		}
+		yield return null;
+	}
+
 
 }
