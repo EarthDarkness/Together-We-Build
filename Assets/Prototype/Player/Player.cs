@@ -189,9 +189,11 @@ public class Player : MonoBehaviour
 		skinToneID = Random.Range(0, skinColors.skins.Length);
 		playerData.skinColor = skinColors.skins[skinToneID];
 		spawn.GetComponent<MeshRenderer>().material.color = playerData.playerColor;
+		spawn.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", 
+			new Color(playerData.playerColor.r, playerData.playerColor.g, playerData.playerColor.b, .25f));
 		//transform.position = startPos;
 		//transform.rotation = startRot;
-
+		Debug.Log(spawn.GetComponentInChildren<MeshRenderer>().gameObject.name);
 		spawn.SetActive(true);
 		body.SetActive(false);
 

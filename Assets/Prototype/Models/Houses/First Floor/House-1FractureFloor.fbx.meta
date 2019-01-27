@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 4659084a1e89ab94cb9c20242dbe1b21
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: House-First.Fracture.003
+    100004: House-First.Fracture.004
+    100006: House-First.Fracture.013
+    100008: House-First.Fracture.014
+    100010: House-First.Fracture.017
+    100012: House-First.Fracture.018
+    100014: House-First.Fracture.020
+    100016: House-First.Fracture.021
+    100018: House-First.Fracture.022
+    100020: House-First.Fracture.023
+    100022: House-First.Fracture.024
+    100024: House-First.Fracture.025
+    100026: House-First.Fracture.026
+    100028: House-First.Fracture.027
+    100030: House-First.Fracture.028
+    100032: House-First.Fracture.030
+    100034: House-First.Fracture.031
+    100036: House-First.Fracture.032
+    100038: House-First.Fracture.033
+    100040: House-First.Fracture.034
+    400000: //RootNode
+    400002: House-First.Fracture.003
+    400004: House-First.Fracture.004
+    400006: House-First.Fracture.013
+    400008: House-First.Fracture.014
+    400010: House-First.Fracture.017
+    400012: House-First.Fracture.018
+    400014: House-First.Fracture.020
+    400016: House-First.Fracture.021
+    400018: House-First.Fracture.022
+    400020: House-First.Fracture.023
+    400022: House-First.Fracture.024
+    400024: House-First.Fracture.025
+    400026: House-First.Fracture.026
+    400028: House-First.Fracture.027
+    400030: House-First.Fracture.028
+    400032: House-First.Fracture.030
+    400034: House-First.Fracture.031
+    400036: House-First.Fracture.032
+    400038: House-First.Fracture.033
+    400040: House-First.Fracture.034
+    2100000: Door
+    2100002: House
+    2100004: WindowFrame
+    2100006: WindowGlass
+    2300000: House-First.Fracture.003
+    2300002: House-First.Fracture.004
+    2300004: House-First.Fracture.013
+    2300006: House-First.Fracture.014
+    2300008: House-First.Fracture.017
+    2300010: House-First.Fracture.018
+    2300012: House-First.Fracture.020
+    2300014: House-First.Fracture.021
+    2300016: House-First.Fracture.022
+    2300018: House-First.Fracture.023
+    2300020: House-First.Fracture.024
+    2300022: House-First.Fracture.025
+    2300024: House-First.Fracture.026
+    2300026: House-First.Fracture.027
+    2300028: House-First.Fracture.028
+    2300030: House-First.Fracture.030
+    2300032: House-First.Fracture.031
+    2300034: House-First.Fracture.032
+    2300036: House-First.Fracture.033
+    2300038: House-First.Fracture.034
+    3300000: House-First.Fracture.003
+    3300002: House-First.Fracture.004
+    3300004: House-First.Fracture.013
+    3300006: House-First.Fracture.014
+    3300008: House-First.Fracture.017
+    3300010: House-First.Fracture.018
+    3300012: House-First.Fracture.020
+    3300014: House-First.Fracture.021
+    3300016: House-First.Fracture.022
+    3300018: House-First.Fracture.023
+    3300020: House-First.Fracture.024
+    3300022: House-First.Fracture.025
+    3300024: House-First.Fracture.026
+    3300026: House-First.Fracture.027
+    3300028: House-First.Fracture.028
+    3300030: House-First.Fracture.030
+    3300032: House-First.Fracture.031
+    3300034: House-First.Fracture.032
+    3300036: House-First.Fracture.033
+    3300038: House-First.Fracture.034
+    4300000: House-First.Fracture.017
+    4300002: House-First.Fracture.018
+    4300004: House-First.Fracture.020
+    4300006: House-First.Fracture.021
+    4300008: House-First.Fracture.022
+    4300010: House-First.Fracture.023
+    4300012: House-First.Fracture.024
+    4300014: House-First.Fracture.025
+    4300016: House-First.Fracture.026
+    4300018: House-First.Fracture.027
+    4300020: House-First.Fracture.028
+    4300022: House-First.Fracture.030
+    4300024: House-First.Fracture.031
+    4300026: House-First.Fracture.032
+    4300028: House-First.Fracture.033
+    4300030: House-First.Fracture.034
+    4300032: House-First.Fracture.014
+    4300034: House-First.Fracture.013
+    4300036: House-First.Fracture.004
+    4300038: House-First.Fracture.003
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
