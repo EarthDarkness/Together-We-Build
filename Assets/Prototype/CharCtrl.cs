@@ -113,13 +113,14 @@ public class CharCtrl : MonoBehaviour
 		graph = GetComponentsInChildren<Animator>();
 
 		
-		AnimatorClipInfo[] clips = graph[0].GetCurrentAnimatorClipInfo(0);
+		//AnimatorClipInfo[] clips = graph[0].GetCurrentAnimatorClipInfo(0);
+		AnimationClip[] clips = graph[0].runtimeAnimatorController.animationClips;
 		
-		foreach(AnimatorClipInfo clip in clips){
-			if(clip.clip.name == "Grab"){
-				grabDelay = clip.clip.length;
-			}else if(clip.clip.name == "Throw"){
-				throwDelay = clip.clip.length;
+		foreach(AnimationClip clip in clips){
+			if(clip.name == "Grab"){
+				grabDelay = clip.length;
+			}else if(clip.name == "Throw"){
+				throwDelay = clip.length;
 			}
 		}
 	}
