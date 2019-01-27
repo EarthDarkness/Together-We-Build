@@ -236,6 +236,10 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public void Build(bool state){
+		GetComponentInChildren<CharCtrl>().Build(state);
+	}
+
 	public bool IsActive()
 	{
 		return playerData.ID != -1 ? true : false;

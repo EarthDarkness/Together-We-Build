@@ -77,7 +77,7 @@ public class GameManager : Singleton<GameManager>
 
 
                     playerPanel.transform.GetChild(i).gameObject.SetActive(true);
-
+					players[i].Build(true);
                     StartCoroutine(CheckForPuzzles(playerPuzzles.Take(players.Count).ToList()));
                 }
             }
@@ -131,6 +131,11 @@ public class GameManager : Singleton<GameManager>
 
             yield return null;
         }
+
+		for (int i = 0; i < players.Count; i++){
+			players[i].Build(false);
+		}
+
         yield return null;
     }
 
