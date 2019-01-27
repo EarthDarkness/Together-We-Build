@@ -10,7 +10,6 @@ public class GameManager : Singleton<GameManager>
     [Required]
     public BlockManager blockManager;
 
-
     //[Required]
     //public GameObject pressInterface, alternateInterface, combinationInterface;
 

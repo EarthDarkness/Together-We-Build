@@ -292,6 +292,8 @@ public class Player : MonoBehaviour
 
 		catchBlock.transform.parent = ctrl.HandTransform();
 
+		AudioManager.Instance.PlaySound("Catch");
+
 		yield return null;
 	}
 
@@ -310,6 +312,7 @@ public class Player : MonoBehaviour
 		catchBlock.rigidBody.AddForce(
 			(transform.forward + Vector3.up).normalized * 500f
 		);//Tried and true 500 power 
+		AudioManager.Instance.PlaySound("Throw");
 		catchBlock.GetComponentInChildren<ParticleSystem>().Play();
 		catchBlock = null;
 
