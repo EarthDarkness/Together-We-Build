@@ -76,17 +76,17 @@ public class CharCtrl : MonoBehaviour
 
 	private void Start()
 	{
-		child = transform.GetChild(0).gameObject;
-		childBase = child.transform.GetChild(0).gameObject;
-		childMale = child.transform.GetChild(2).gameObject;
-		childFemale = child.transform.GetChild(4).gameObject;
-		childNeutral = child.transform.GetChild(3).gameObject;
-		
-		adult = transform.GetChild(1).gameObject;
+		adult = transform.GetChild(0).GetChild(0).gameObject;
 		adultBase = adult.transform.GetChild(1).gameObject;
 		adultMale = adult.transform.GetChild(3).gameObject;
 		adultFemale = adult.transform.GetChild(4).gameObject;
 		adultNeutral = adult.transform.GetChild(0).gameObject;
+
+		child = transform.GetChild(1).GetChild(0).gameObject;
+		childBase = child.transform.GetChild(0).gameObject;
+		childMale = child.transform.GetChild(2).gameObject;
+		childFemale = child.transform.GetChild(4).gameObject;
+		childNeutral = child.transform.GetChild(3).gameObject;		
 	}
 
 	// Update is called once per frame
