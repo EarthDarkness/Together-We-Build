@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 using UniversalNetworkInput;
 
@@ -201,12 +202,14 @@ public class Player : MonoBehaviour
 		// Move the controller
 		controller.Move(moveDirection * Time.deltaTime);
 
+		transform.rotation.SetLookRotation(moveDirection,Vector3.up);
+
 		//transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 
-		if (catchBlock)
-		{
-			catchBlock.transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
-		}
+		//if (catchBlock)
+		//{
+		//	catchBlock.transform.position = new Vector3(transform.position.x, 4f, transform.position.z);
+		//}
 	}
 
 	private void CatchBlock()
@@ -219,10 +222,7 @@ public class Player : MonoBehaviour
 		{
 			if (interactBlock)
 			{
-				delay = Time.time + GetComponentInChildren<CharCtrl>().Grab();
-				interactBlock.rigidBody.isKinematic = true;
-				catchBlock = interactBlock;
-				interactBlock = null;
+				StartCoroutine(GrabRoutine(0.1f));
 			}
 		}
 	}
@@ -233,10 +233,7 @@ public class Player : MonoBehaviour
 		{
 			if (catchBlock)
 			{
-				delay = Time.time + GetComponentInChildren<CharCtrl>().Throw();
-				catchBlock.rigidBody.isKinematic = false;
-				catchBlock.rigidBody.AddForce(Vector3.up * 500f);
-				catchBlock = null;
+				StartCoroutine(ThrowRoutine(1.1f));
 			}
 		}
 	}
@@ -248,5 +245,38 @@ public class Player : MonoBehaviour
 	public bool IsActive()
 	{
 		return playerData.ID != -1 ? true : false;
+	}
+
+	IEnumerator GrabRoutine(float wait){
+
+		CharCtrl ctrl = GetComponentInChildren<CharCtrl>();
+		delay = Time.time + ctrl.Grab();
+		interactBlock.rigidBody.isKinematic = true;
+		interactBlock.GetComponent<Block>().stoppd = true;
+		catchBlock = interactBlock;
+		interactBlock = null;
+		
+		yield return new WaitForSeconds(wait);
+
+		catchBlock.transform.parent = ctrl.HandTransform();
+
+		yield return null;
+	}
+
+	
+	IEnumerator ThrowRoutine(float wait){
+		CharCtrl ctrl = GetComponentInChildren<CharCtrl>();
+
+		delay = Time.time + ctrl.Throw();
+
+		yield return new WaitForSeconds(wait);
+
+		catchBlock.transform.parent = null;
+		catchBlock.GetComponent<Block>().stoppd = false;
+		catchBlock.rigidBody.isKinematic = false;
+		catchBlock.rigidBody.AddForce(Vector3.up * 500f);
+		catchBlock = null;
+
+		yield return null;
 	}
 }

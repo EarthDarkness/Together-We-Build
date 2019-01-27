@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>
         {
             puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
                     blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+			puzzleBlocks[i].stoppd = true;
         }
 
         playerPuzzles.AddRange(playerPanel.GetComponentsInChildren<InputPuzzle>(true));

@@ -21,11 +21,23 @@ public class Block : MonoBehaviour
 	[HideInInspector]
 	public Player player;
 
+	public float timer = float.MaxValue;
+
+	public bool stoppd = false;
+
 	private void Start()
 	{
 		Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
 		meshRenderer.material.color = blockData.color;
 		outline.OutlineColor = Color.white;
+	}
+
+	private void Update()
+	{
+		if(!stoppd)
+			timer -= Time.deltaTime;
+		if(timer < 0.0f)
+			Destroy(transform.gameObject);
 	}
 
 	public void EnableBlock()
@@ -38,8 +50,8 @@ public class Block : MonoBehaviour
 		outline.enabled = false;
 	}
 
-	public void DestroyBlock()
+	public void DestroyBlock(float lifetime)
 	{
-		Destroy(gameObject,10f);
+		timer = lifetime;
 	}
 }

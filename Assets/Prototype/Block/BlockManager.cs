@@ -51,7 +51,7 @@ public class BlockManager : MonoBehaviour
 			blockBase.GetComponent<Block>().blockData = blockData[Random.Range(0, blockData.Length)];
 			GameObject GO = GameObject.Instantiate(blockBase, new Vector3(Random.Range(0f, 12f) - 6f, 15f, Random.Range(0f, 12f) - 10f), Quaternion.identity, null);
 			blockRef = GO.GetComponent<Block>();
-			blockRef.DestroyBlock();
+			blockRef.DestroyBlock(10.0f);
 		}
 		return blockRef;
 	}
