@@ -83,9 +83,9 @@ public class GameManager : Singleton<GameManager>
                 {
                     int randType = Random.Range(0, 3);
                     Debug.Log(i + " : " + players[i].playerData.ID);
-                    playerPuzzles[players[i].playerData.playerID].CreatePuzzle((InputPuzzle.PuzzleType)2, players[i].playerData.ID, 4);
-                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(2).gameObject.SetActive(true);
-                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(2).GetComponentInChildren<ButtonCodeWriter>().SetText(0);
+                    playerPuzzles[players[i].playerData.playerID].CreatePuzzle((InputPuzzle.PuzzleType)randType, players[i].playerData.ID, 4);
+                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(randType).gameObject.SetActive(true);
+                    playerPuzzles[players[i].playerData.playerID].transform.GetChild(randType).GetComponentInChildren<ButtonCodeWriter>().SetText(0);
 
 
                     playerPanel.transform.GetChild(players[i].playerData.playerID).gameObject.SetActive(true);
