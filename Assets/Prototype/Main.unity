@@ -1345,7 +1345,7 @@ MonoBehaviour:
   - name: Catch
     clip: {fileID: 8300000, guid: 8bbdd39c16ad2de43adde5e39b5d6df7, type: 3}
     mixer: {fileID: 0}
-    volume: 0.8
+    volume: 0.6
     minPitch: 1
     maxPitch: 1
     priority: 0
@@ -4588,6 +4588,7 @@ GameObject:
   - component: {fileID: 1090447010}
   - component: {fileID: 1090447009}
   - component: {fileID: 1090447008}
+  - component: {fileID: 1090447011}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4651,6 +4652,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 20, y: 270, z: 0}
+--- !u!114 &1090447011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1090447007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 59cac80a43ec83442b1b8d985c972941, type: 2}
 --- !u!1001 &1104000283
 Prefab:
   m_ObjectHideFlags: 0
