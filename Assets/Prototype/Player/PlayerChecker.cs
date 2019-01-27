@@ -14,6 +14,9 @@ public class PlayerChecker : MonoBehaviour
 
 	public static List<int> playersActivated = new List<int>();
 
+
+	private float horizontal, vertical;
+
 	private void Start()
 	{
 		foreach (Player player in players)
@@ -22,16 +25,11 @@ public class PlayerChecker : MonoBehaviour
 		}
 	}
 
-	private void OnDisable()
-	{
-		Start();
-	}
-
 	private void Update()
 	{
-		if(UNInput.GetButtonDown(ButtonCode.Start))
+		if (UNInput.GetButtonDown(ButtonCode.Start))
 		{
-			if(playersActivated.Count > 0)
+			if (playersActivated.Count > 0)
 			{
 				SceneManager.LoadScene(1);
 			}
@@ -41,6 +39,22 @@ public class PlayerChecker : MonoBehaviour
 		{
 			if (playersActivated.Contains(id))
 			{
+				horizontal = UNInput.GetAxis(id, AxisCode.LeftStickHorizontal);
+				vertical = UNInput.GetAxis(id, AxisCode.LeftStickVertical);
+				if (Mathf.Abs(horizontal) > .55f)
+				{
+					if (horizontal > 0f)
+						players[id].IncrementModel();
+					else
+						players[id].DecrementModel();
+				}
+				if (Mathf.Abs(vertical) > .55f)
+				{
+					if (vertical > 0f)
+						players[id].IncrementSkin();
+					else
+						players[id].DecrementSkin();
+				}
 				continue;
 			}
 
@@ -54,6 +68,7 @@ public class PlayerChecker : MonoBehaviour
 						continue;
 					}
 					menuController.ChooseToMenu();
+					Invoke("Start",1f);
 					blockCheck = true;
 					break;
 				}
