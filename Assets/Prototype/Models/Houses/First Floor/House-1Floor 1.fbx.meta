@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: b1602fad17d014f41969e714b6e194c8
+guid: a9c6fb71bdcc022409baa3dfac5de616
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: default
     400000: //RootNode
-    400002: default
-    2100000: defaultMat
-    2300000: default
-    3300000: default
-    4300000: default
-    9500000: //RootNode
+    2100000: House
+    2100002: Door
+    2100004: WindowFrame
+    2100006: WindowGlass
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: House-First
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
