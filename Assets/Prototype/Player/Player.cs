@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 	[BoxGroup("Menu")]
 	public GameObject arrows;
 
+	buttonGuide guide = null;
+
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
 	private Vector2 movement = Vector2.zero;
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour
 		startPos = transform.position;
 		startRot = transform.rotation;
 		//ActivePlayer(playerData.ID);
+
+		guide =	transform.GetComponentInChildren<buttonGuide>();
 
 		if (IsActive())
 		{
@@ -246,6 +250,10 @@ public class Player : MonoBehaviour
 		{
 			return;
 		}
+		if (interactBlock && guide)
+			guide.Grab();
+		if (!interactBlock && guide)
+			guide.Clear();
 		if (UNInput.GetButtonDown(playerData.ID, ButtonCode.A))
 		{
 			if (interactBlock)
@@ -257,6 +265,11 @@ public class Player : MonoBehaviour
 
 	private void DropBlock()
 	{
+		
+		if (catchBlock && guide)
+			guide.Throw();
+		if (!catchBlock && guide)
+			guide.Clear();
 		if (UNInput.GetButtonDown(playerData.ID, ButtonCode.B))
 		{
 			if (catchBlock)
