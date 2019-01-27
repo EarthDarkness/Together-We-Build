@@ -14,7 +14,7 @@ public class BlockManager : MonoBehaviour
 
 	private void Start()
 	{
-		StartCoroutine(InstantiateBlock(2.0f));
+		StartCoroutine(InstantiateBlock(1.2f));
 	}
 
 	private IEnumerator InstantiateBlock(float interval, PlayerData playerData = null)
@@ -70,7 +70,7 @@ public class BlockManager : MonoBehaviour
 
 			GameObject GO = GameObject.Instantiate(blockBase, pos, Quaternion.identity, null);
 			blockRef = GO.GetComponent<Block>();
-			blockRef.DestroyBlock(20.0f);
+			blockRef.DestroyBlock(15.0f);
 		}
 		return blockRef;
 	}

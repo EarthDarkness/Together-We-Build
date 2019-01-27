@@ -308,8 +308,8 @@ public class Player : MonoBehaviour
 		catchBlock.GetComponent<Block>().stoppd = false;
 		catchBlock.rigidBody.isKinematic = false;
 		catchBlock.rigidBody.AddForce(
-			(transform.forward + Vector3.up).normalized * 250f
-		);
+			(transform.forward + Vector3.up).normalized * 500f
+		);//Tried and true 500 power 
 		catchBlock = null;
 
 		yield return null;
