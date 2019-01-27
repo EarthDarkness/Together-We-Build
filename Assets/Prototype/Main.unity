@@ -1331,6 +1331,39 @@ MonoBehaviour:
     loop: 0
     isMusic: 0
     lastSource: {fileID: 0}
+  - name: GameplayMusic
+    clip: {fileID: 8300000, guid: 8201699cc97f3476a8e6cbbec88fa635, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.7
+    minPitch: 1
+    maxPitch: 1
+    priority: 0
+    reverse: 0
+    loop: 1
+    isMusic: 1
+    lastSource: {fileID: 0}
+  - name: Catch
+    clip: {fileID: 8300000, guid: 8bbdd39c16ad2de43adde5e39b5d6df7, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.8
+    minPitch: 1
+    maxPitch: 1
+    priority: 0
+    reverse: 0
+    loop: 0
+    isMusic: 0
+    lastSource: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: 9d171efd48560e041913822dd97cf1b8, type: 3}
+    mixer: {fileID: 0}
+    volume: 0.8
+    minPitch: 1
+    maxPitch: 1
+    priority: 0
+    reverse: 0
+    loop: 0
+    isMusic: 0
+    lastSource: {fileID: 0}
   mixer: {fileID: 0}
 --- !u!4 &325605595
 Transform:
