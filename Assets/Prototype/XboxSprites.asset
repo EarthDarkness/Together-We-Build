@@ -240,6 +240,90 @@ MonoBehaviour:
     unicode: 0
     pivot: {x: -91.5, y: 70}
     sprite: {fileID: 21300016, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 16
+    x: 476
+    y: 702
+    width: 227
+    height: 230
+    xOffset: 20
+    yOffset: 180
+    xAdvance: 227
+    scale: 1
+    name: DPL
+    hashCode: 72536
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300002, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 17
+    x: 704
+    y: 702
+    width: 227
+    height: 230
+    xOffset: 20
+    yOffset: 180
+    xAdvance: 227
+    scale: 1
+    name: DPR
+    hashCode: 72518
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300004, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 18
+    x: 457
+    y: 473
+    width: 227
+    height: 230
+    xOffset: 20
+    yOffset: 180
+    xAdvance: 227
+    scale: 1
+    name: DPU
+    hashCode: 72513
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300026, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 19
+    x: 230
+    y: 472
+    width: 227
+    height: 230
+    xOffset: 20
+    yOffset: 180
+    xAdvance: 227
+    scale: 1
+    name: DPD
+    hashCode: 72528
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300024, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 20
+    x: 0
+    y: 571
+    width: 229
+    height: 130
+    xOffset: 20
+    yOffset: 110
+    xAdvance: 229
+    scale: 0.8
+    name: LB
+    hashCode: 2446
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300030, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
+  - id: 21
+    x: 0
+    y: 440
+    width: 229
+    height: 130
+    xOffset: 20
+    yOffset: 110
+    xAdvance: 229
+    scale: 0.8
+    name: RB
+    hashCode: 2768
+    unicode: 0
+    pivot: {x: -91.5, y: 70}
+    sprite: {fileID: 21300006, guid: dd335125e2389ce4c8f3cedd625c4d52, type: 3}
   fallbackSpriteAssets: []
 --- !u!21 &21346139616820606
 Material:
