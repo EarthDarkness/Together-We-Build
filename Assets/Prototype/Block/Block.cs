@@ -32,17 +32,19 @@ public class Block : MonoBehaviour
 		Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
 		meshRenderer.material.color = blockData.color;
 		outline.OutlineColor = Color.white;
+		ParticleSystem.MainModule settings = transform.GetComponentInChildren<ParticleSystem>().main;
+		settings.startColor = new ParticleSystem.MinMaxGradient(blockData.color);
 	}
 
 	private void Update()
 	{
 		Color col = blockData.color;
-		col.a = timer/maxLife;
+		col.a = timer / maxLife;
 		meshRenderer.material.color = col;
 
-		if(!stoppd)
+		if (!stoppd)
 			timer -= Time.deltaTime;
-		if(timer < 0.0f)
+		if (timer < 0.0f)
 			Destroy(transform.gameObject);
 	}
 

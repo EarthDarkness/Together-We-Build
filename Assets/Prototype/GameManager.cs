@@ -135,19 +135,19 @@ public class GameManager : Singleton<GameManager>
                 }
 
 
+                house.CreateFloor(houseFloor);
                 houseFloor++;
-                if (houseFloor >= house.MaxHouseFloor)
+                if (houseFloor > house.MaxHouseFloor)
                 {
                     //Finished the game
                     break;
                 }
 
-                house.CreateFloor(houseFloor - 1);
 
                 puzzleNumber++;
                 for (int i = 0; i < puzzleNumber; i++)
                 {
-                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
                             blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
                     puzzleBlocks[i].stoppd = true;
                 }
