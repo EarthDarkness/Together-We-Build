@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: Game
+  m_Name: Menu
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -100,14 +100,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.03
-        threshold: 0.93
-        softKnee: 0.506
-        radius: 3.54
+        intensity: 1.14
+        threshold: 1.5
+        softKnee: 0.227
+        radius: 1.55
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
-        intensity: 0
+        intensity: 3
   colorGrading:
     m_Enabled: 0
     m_Settings:

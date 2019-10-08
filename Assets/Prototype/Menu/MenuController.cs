@@ -136,7 +136,7 @@ public class MenuController : MonoBehaviour
 	{
 		SceneManager.LoadScene(sceneIndex);
 	}
-	public static void Quit()
+	public void Quit()
 	{
 		AudioManager.Instance.PlaySound("SubmitSound");
 		Application.Quit();

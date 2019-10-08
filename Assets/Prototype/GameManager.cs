@@ -42,13 +42,19 @@ public class GameManager : Singleton<GameManager>
 
     List<InputPuzzle> playerPuzzles = new List<InputPuzzle>();
 
+	public Material blockMat;
+
 
     private void Start()
     {
         for (int i = 0; i < puzzleNumber; i++)
         {
-            puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 8f + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
-                    blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+			Block block = blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+							 blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]);
+
+			block.GetComponent<MeshRenderer>().material = blockMat;
+			block.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", block.blockData.color * 3f);
+			puzzleBlocks.Add(block);
 			puzzleBlocks[i].stoppd = true;
         }
 
@@ -155,9 +161,13 @@ public class GameManager : Singleton<GameManager>
                 puzzleNumber++;
                 for (int i = 0; i < puzzleNumber; i++)
                 {
-                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
-                            blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
-                    puzzleBlocks[i].stoppd = true;
+					Block block = blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+							blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]);
+
+					block.GetComponent<MeshRenderer>().material = blockMat;
+					block.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", block.blockData.color * 3f);
+					puzzleBlocks.Add(block);
+					puzzleBlocks[i].stoppd = true;
                 }
                 break;
             }
@@ -177,8 +187,13 @@ public class GameManager : Singleton<GameManager>
 
                 for (int i = 0; i < puzzleNumber; i++)
                 {
-                    puzzleBlocks.Add(blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
-                            blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]));
+
+					Block block = blockManager.CreateBlock(transform.position + Vector3.up * 3.5f * houseFloor + Vector3.left * 3f + (Vector3.right * 3.0f) * i,
+							blockManager.blockData[Random.Range(0, blockManager.blockData.Length)]);
+
+					block.GetComponent<MeshRenderer>().material = blockMat;
+					block.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", block.blockData.color * 3f);
+					puzzleBlocks.Add(block);
                     puzzleBlocks[i].stoppd = true;
                 }
                 break;

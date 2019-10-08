@@ -2632,6 +2632,7 @@ MonoBehaviour:
   failedPuzzleTime: 5
   houseStartPos: {x: 0, y: 0, z: 0}
   remainingTime: 300
+  blockMat: {fileID: 2100000, guid: 5208839e438f3c64299177af2a1c1492, type: 2}
 --- !u!54 &1041003614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5557,11 +5558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01464ca8601f8474dacd086f7a74a1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjects:
-  - {fileID: 1003797060487108, guid: 957afc5c6662f984a9126339e52114c9, type: 2}
-  - {fileID: 1839622513857758, guid: 81753b89ed0ac95468ba2321336fcef7, type: 2}
-  - {fileID: 1654970815636750, guid: 390fbd336efd24b4e88655bc81026cf0, type: 2}
-  floor: 0
 --- !u!4 &2086081377
 Transform:
   m_ObjectHideFlags: 0
